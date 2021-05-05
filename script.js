@@ -43,6 +43,11 @@ window.addEventListener('keydown', function(e) {
         case "Escape":
             paragraph.innerHTML = "";
             break;
+        case "Backspace":
+            console.log("da");
+            let x = paragraph.textContent;
+            paragraph.textContent = x.slice(0, x.length - 1);
+            break;
         case "1": 
             paragraph.innerHTML += "1";
             break;
@@ -83,7 +88,7 @@ window.addEventListener('keydown', function(e) {
             paragraph.innerHTML += "*";
             break;
         case "/":
-            paragraph.innerHTML += "/";
+            
             break;
         case "Enter":
             operate();
@@ -91,6 +96,6 @@ window.addEventListener('keydown', function(e) {
         default:
             break;
     }
+   
     console.log(e.key);
-    
 });
