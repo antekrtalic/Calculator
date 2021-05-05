@@ -31,7 +31,17 @@ function operate(oper, num1, num2) {
     }
 }
 
+let paragraph = document.getElementsByTagName('p');
 
 window.addEventListener('keydown', function(e) {
+    if (e.keyCode === 104) {
+        paragraph[0].innerHTML = "";
+    }
+    if (e.key === "Esc") {
+        paragraph[0].textContent = "";
+    } else {
+        paragraph[0].textContent += e.key;
+    }
     console.log(e);
+    
 });
