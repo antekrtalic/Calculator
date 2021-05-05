@@ -88,11 +88,12 @@ window.addEventListener('keydown', function(e) {
             paragraph.innerHTML += "*";
             break;
         case "/":
-            
+            operate("/", num1, num2);
             break;
         case "Enter":
             operate();
             break;
+        case "F9": 
         default:
             break;
     }
