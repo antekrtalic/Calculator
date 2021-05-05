@@ -19,16 +19,16 @@ body {
 
 #calculator {
     width: 400px;
-    height: 400px;
+    height: 500px;
     border: 5px solid black;
     background-color: #FBEEC1;
 }
 
 
 .display {
-    height: 50px;
+    height: 70px;
     width: auto;
-    margin: 25px 5px 10px 5px;
+    margin: 15px 5px 10px 5px;
     background-color: #fff;
     display: flex;
     justify-content: flex-end;
@@ -45,13 +45,25 @@ body {
 
 .buttons {
     width: auto;
-    height: 200px;
-    border: 1px solid black;
+    height: 400px;
     margin: 10px 5px 5px 5px;
     background-color: grey;
+    flex-wrap: wrap;
+    display: flex;
+    
+}
+
+.key {
+    width: 95px;
+    height: auto;
+    background-color: #b5fdff;
+    margin: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 kbd {
-    width: 100px;
-    height: auto;
+    font-size: 20px;
+    text-decoration: none;
 }
