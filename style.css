@@ -64,6 +64,7 @@ kbd {
     font-size: 20px;
 }
 
-.key:hover {
+.active, .key:hover {
     background-color: #1cc4c9;
+
 }
