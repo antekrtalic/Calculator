@@ -36,54 +36,56 @@ function operate(oper, num1, num2) {
 window.addEventListener('keydown', function(e) {
     const paragraph = document.querySelector('p');
     let text = paragraph.textContent;
-    let x, num1, num2;
-    while (text.length > 16) {
-        paragraph.textContent = text.slice(0, text.length - 1);
-    }
+    
+    let x, num1, num2, numbers;
+    
 
     switch(e.key) {
         case "Delete":
-            paragraph.innerHTML = "";
+            paragraph.textContent = "";
             break;
         case "Escape":
-            paragraph.innerHTML = "";
+            paragraph.textContent = "";
             break;
         case "Backspace":
             console.log("da");
             paragraph.textContent = text.slice(0, text.length - 1);
             break;
         case "1": 
-            paragraph.innerHTML += "1";
+            paragraph.textContent += "1";
             break;
         case "2": 
-            paragraph.innerHTML += "2";
+            paragraph.textContent += "2";
             break;
         case "3": 
-            paragraph.innerHTML += "3";
+            paragraph.textContent += "3";
             break;
         case "4": 
-            paragraph.innerHTML += "4";
+            paragraph.textContent += "4";
             break;
         case "5": 
-            paragraph.innerHTML += "5";
+            paragraph.textContent += "5";
             break;
         case "6": 
-            paragraph.innerHTML += "6";
+            paragraph.textContent += "6";
             break;
         case "7": 
-            paragraph.innerHTML += "7";
+            paragraph.textCOntent += "7";
             break;
         case "8": 
-            paragraph.innerHTML += "8";
+            paragraph.textContent += "8";
             break;
         case "9": 
-            paragraph.innerHTML += "9";
+            paragraph.textContent += "9";
             break;
         case ",":
-            paragraph.innerHTML += ".";
+            paragraph.textContent += ".";
             break;
         case "+":
-            paragraph.innerHTML += "+";
+            paragraph.textContent += "+";
+
+            num1 = text.slice(0, indexOf("+"));
+            num2 = text.slice(0, indexOf("+") + 1);
             x = "+";
             break;
         case "-":
@@ -104,6 +106,6 @@ window.addEventListener('keydown', function(e) {
         default:
             break;
     }
-    
-    console.log(text.length);
+    console.log(num1);
+    console.log(num2);
 });
