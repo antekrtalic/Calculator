@@ -18,25 +18,27 @@ function divide(a, b) {
 
 /* Calculating numbers */
 function operate(oper, num1, num2) {
+    let result;
     if (oper === "+") {
-        add(num1, num2);
+        result = add(num1, num2);
     } else if (oper === "-") {
-        subtract(num1, num2);
+        result = subtract(num1, num2);
     } else if (oper === "*") {
-        multiply(num1, num2);
+        result = multiply(num1, num2);
     } else if (oper === "/") {
-        divide(num1, num2);
+        result = divide(num1, num2);
     } else {
         alert("Enter basic math operator(+,-,*,/)");
     }
+    return result;
 }
-
+console.log("+", "1", "3");
 /* Displaying output by pressing keys */
 
 window.addEventListener('keydown', function(e) {
     const paragraph = document.querySelector('p');
     let text = paragraph.textContent;
-    let numbers;
+    let values, num1, num2, oper;
     
     switch(e.key) {
         case "Delete":
@@ -84,19 +86,19 @@ window.addEventListener('keydown', function(e) {
             break;
         case "-":
             paragraph.textContent += "-";
-            x = "-";
             break;
         case "*":
             paragraph.textContent += "*";
-            x = "*";
             break;
         case "/":
             paragraph.textContent += "/";
-            x = "/";
             break;
         case "Enter":
-            numbers = evaluation(text);
-            console.log(numbers);
+            values = evaluation(text);
+            num1 = parseInt(values[0]);
+            num2 = parseInt(values[2]);
+            oper = values[1];
+            paragraph.textContent = operate(oper, num1, num2);
             break;
         case "F9": 
         default:
@@ -113,8 +115,10 @@ function evaluation(text) {
         text = text.split("-");
         text.splice(1, 0, "-");
     } else if (text.includes("*")) {
+        text = text.split("*");
         text.splice(1, 0, "*");
     } else if (text.includes("/")) {
+        text = text.split("/");
         text.splice(1, 0, "/");
     }
     return text;
