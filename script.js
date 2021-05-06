@@ -35,7 +35,12 @@ function operate(oper, num1, num2) {
 
 window.addEventListener('keydown', function(e) {
     const paragraph = document.querySelector('p');
-    
+    let text = paragraph.textContent;
+    let x, num1, num2;
+    while (text.length > 16) {
+        paragraph.textContent = text.slice(0, text.length - 1);
+    }
+
     switch(e.key) {
         case "Delete":
             paragraph.innerHTML = "";
@@ -45,8 +50,7 @@ window.addEventListener('keydown', function(e) {
             break;
         case "Backspace":
             console.log("da");
-            let x = paragraph.textContent;
-            paragraph.textContent = x.slice(0, x.length - 1);
+            paragraph.textContent = text.slice(0, text.length - 1);
             break;
         case "1": 
             paragraph.innerHTML += "1";
@@ -80,23 +84,26 @@ window.addEventListener('keydown', function(e) {
             break;
         case "+":
             paragraph.innerHTML += "+";
+            x = "+";
             break;
         case "-":
             paragraph.innerHTML += "-";
+            x = "-";
             break;
         case "*":
             paragraph.innerHTML += "*";
+            x = "*";
             break;
         case "/":
-            operate("/", num1, num2);
+            x = "/";
             break;
         case "Enter":
-            operate();
+            operate(x, num1, num2);
             break;
         case "F9": 
         default:
             break;
     }
-   
-    console.log(e.key);
+    
+    console.log(text.length);
 });
