@@ -32,7 +32,7 @@ function operate(oper, num1, num2) {
     }
     return result;
 }
-console.log("+", "1", "3");
+
 /* Displaying output by pressing keys */
 
 window.addEventListener('keydown', function(e) {
@@ -50,6 +50,9 @@ window.addEventListener('keydown', function(e) {
         case "Backspace":
             console.log("da");
             paragraph.textContent = text.slice(0, text.length - 1);
+            break;
+        case "0":
+            paragraph.textContent += "0";
             break;
         case "1": 
             paragraph.textContent += "1";
@@ -98,9 +101,11 @@ window.addEventListener('keydown', function(e) {
             num1 = parseInt(values[0]);
             num2 = parseInt(values[2]);
             oper = values[1];
-            paragraph.textContent = operate(oper, num1, num2);
+            if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2);
             break;
         case "F9": 
+            if (paragraph.textContent[0] === "-") paragraph.textContent = "+" + paragraph.textContent.slice(1);
+            if (paragraph.textContent[0] !== "-") paragraph.textContent = "-" + paragraph.textContent.slice(0);
         default:
             break;
     }
