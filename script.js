@@ -16,7 +16,7 @@ function divide(a, b) {
     return a / b;
 }
 
-
+/* Calculating numbers */
 function operate(oper, num1, num2) {
     if (oper === "+") {
         add(num1, num2);
@@ -31,15 +31,12 @@ function operate(oper, num1, num2) {
     }
 }
 
-
+/* Displaying output by pressing keys */
 
 window.addEventListener('keydown', function(e) {
     const paragraph = document.querySelector('p');
     let text = paragraph.textContent;
     
-    let x, num1, num2, numbers;
-    
-
     switch(e.key) {
         case "Delete":
             paragraph.textContent = "";
@@ -70,7 +67,7 @@ window.addEventListener('keydown', function(e) {
             paragraph.textContent += "6";
             break;
         case "7": 
-            paragraph.textCOntent += "7";
+            paragraph.textContent += "7";
             break;
         case "8": 
             paragraph.textContent += "8";
@@ -83,20 +80,17 @@ window.addEventListener('keydown', function(e) {
             break;
         case "+":
             paragraph.textContent += "+";
-
-            num1 = text.slice(0, indexOf("+"));
-            num2 = text.slice(0, indexOf("+") + 1);
-            x = "+";
             break;
         case "-":
-            paragraph.innerHTML += "-";
+            paragraph.textContent += "-";
             x = "-";
             break;
         case "*":
-            paragraph.innerHTML += "*";
+            paragraph.textContent += "*";
             x = "*";
             break;
         case "/":
+            paragraph.textContent += "/";
             x = "/";
             break;
         case "Enter":
@@ -106,6 +100,8 @@ window.addEventListener('keydown', function(e) {
         default:
             break;
     }
-    console.log(num1);
-    console.log(num2);
 });
+
+
+console.log(document.querySelector('p').textContent);
+
