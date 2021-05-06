@@ -111,6 +111,13 @@ window.addEventListener('keydown', function(e) {
     }
 });
 
+const divs = document.querySelectorAll('.key');
+
+divs.forEach(element => {
+    element.addEventListener('click', function(e) {
+        console.log(e);
+    });
+});
 
 function evaluation(text) {
     if (text.includes("+")) {
