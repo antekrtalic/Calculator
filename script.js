@@ -36,6 +36,7 @@ function operate(oper, num1, num2) {
 window.addEventListener('keydown', function(e) {
     const paragraph = document.querySelector('p');
     let text = paragraph.textContent;
+    let numbers;
     
     switch(e.key) {
         case "Delete":
@@ -94,7 +95,8 @@ window.addEventListener('keydown', function(e) {
             x = "/";
             break;
         case "Enter":
-            operate(x, num1, num2);
+            numbers = evaluation(text);
+            console.log(numbers);
             break;
         case "F9": 
         default:
@@ -103,5 +105,18 @@ window.addEventListener('keydown', function(e) {
 });
 
 
-console.log(document.querySelector('p').textContent);
+function evaluation(text) {
+    if (text.includes("+")) {
+        text = text.split("+");
+        text.splice(1, 0, "+");
+    } else if (text.includes("-")) {
+        text = text.split("-");
+        text.splice(1, 0, "-");
+    } else if (text.includes("*")) {
+        text.splice(1, 0, "*");
+    } else if (text.includes("/")) {
+        text.splice(1, 0, "/");
+    }
+    return text;
+}
 
