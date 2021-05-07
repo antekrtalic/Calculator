@@ -13,7 +13,12 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-    return a / b;
+    if (a === 0 || b === 0) {
+        alert("Cannot divide by zero");
+    }else {
+        return a / b;
+    }
+    
 }
 
 /* Calculating numbers */
@@ -101,8 +106,8 @@ window.addEventListener('keydown', function(e) {
             break;
         case "Enter":
             values = evaluation(text);
-            num1 = parseInt(values[0]);
-            num2 = parseInt(values[2]);
+            num1 = parseFloat(values[0]);
+            num2 = parseFloat(values[2]);
             oper = values[1];
             if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2);
             break;
@@ -112,6 +117,7 @@ window.addEventListener('keydown', function(e) {
         default:
             break;
     }
+    
 });
 
 // const divs = document.querySelectorAll('.key');
