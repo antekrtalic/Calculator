@@ -46,7 +46,7 @@ window.addEventListener('keydown', function(e) {
     let values, num1, num2, oper;
     e.className = "active";
     let selected = document.getElementsByClassName('active');
-
+    
     
     switch(e.key) {
         case "Delete":
@@ -106,9 +106,11 @@ window.addEventListener('keydown', function(e) {
             break;
         case "Enter":
             values = evaluation(text);
-            num1 = parseFloat(values[0]);
-            num2 = parseFloat(values[2]);
+            num1 = parseInt(values[0]);
+            num2 = parseInt(values[2]);
             oper = values[1];
+            
+            
             if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2);
             break;
         case "F9": 
@@ -117,6 +119,8 @@ window.addEventListener('keydown', function(e) {
         default:
             break;
     }
+    
+    paragraph.textContent = decimalPoint(paragraph.textContent);
     
 });
 
@@ -216,6 +220,15 @@ function evaluation(text) {
         text = text.split("/");
         text.splice(1, 0, "/");
     }
+   
     return text;
 }
 
+function decimalPoint(num_text) {
+    if (num_text.includes('.') && !(num_text.includes('+'))) {
+        if (num_text.indexOf('.') + 2 < num_text.length) {
+            num_text = num_text.slice(0, num_text.indexOf('.')+2);
+        }
+    }
+    return num_text;
+}
