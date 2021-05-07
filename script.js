@@ -145,7 +145,51 @@ window.addEventListener('keydown', function(e) {
 /* Displaying output by pressing mouse */
 
 window.addEventListener('click', function(e) {
-    let div = document.getElementById(`${e.target.id}`);
+    const paragraph = document.querySelector('p');
+    let text = paragraph.textContent;
+
+    switch (e.target.id) {    
+        case "CE":
+            paragraph.textContent = 0;
+            break;
+        case "C":
+            paragraph.textContent = 0;
+            break;
+        case "Back":
+            paragraph.textContent = text.slice(0, text.length - 1);
+            break;
+        case "Zero":
+            paragraph.textContent += 0;
+            break;
+        case "One":
+            paragraph.textContent += 1;
+            break;
+        case "Two":
+            paragraph.textContent += 2;
+            break;
+        case "Three":
+            paragraph.textContent += 3;
+            break;
+        case "Four":
+            paragraph.textCOntent += 4;
+            break;
+        case "Five":
+            paragraph.textCOntent += 5;
+            break;
+        case "Six":
+            paragraph.textContent += 6;
+            break;
+        case "Seven":
+            paragraph.textContent += 7;
+            break;
+        case "Eight":
+            paragraph.textContent += 8;
+            break;
+        case "Nine":
+            paragraph.textContent += 9;
+            break;
+        case "Plus":
+    }
     
-})
+});
 
