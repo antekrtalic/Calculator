@@ -66,3 +66,6 @@ kbd {
     background-color: #1cc4c9;
 
 }
+.key:active {
+    background-color: red;
+}
