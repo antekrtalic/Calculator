@@ -150,45 +150,73 @@ window.addEventListener('click', function(e) {
 
     switch (e.target.id) {    
         case "CE":
-            paragraph.textContent = 0;
+            paragraph.textContent = "0";
             break;
         case "C":
-            paragraph.textContent = 0;
+            paragraph.textContent = "0";
             break;
         case "Back":
             paragraph.textContent = text.slice(0, text.length - 1);
             break;
         case "Zero":
-            paragraph.textContent += 0;
+            paragraph.textContent += "0";
             break;
         case "One":
-            paragraph.textContent += 1;
+            paragraph.textContent += "1";
             break;
         case "Two":
-            paragraph.textContent += 2;
+            paragraph.textContent += "2";
             break;
         case "Three":
-            paragraph.textContent += 3;
+            paragraph.textContent += "3";
             break;
         case "Four":
-            paragraph.textCOntent += 4;
+            paragraph.textCOntent += "4";
             break;
         case "Five":
-            paragraph.textCOntent += 5;
+            paragraph.textCOntent += "5";
             break;
         case "Six":
-            paragraph.textContent += 6;
+            paragraph.textContent += "6";
             break;
         case "Seven":
-            paragraph.textContent += 7;
+            paragraph.textContent += "7";
             break;
         case "Eight":
-            paragraph.textContent += 8;
+            paragraph.textContent += "8";
             break;
         case "Nine":
-            paragraph.textContent += 9;
+            paragraph.textContent += "9";
             break;
         case "Plus":
+            paragraph.textContent += "+";
+            break;
+        case "Minus":
+            paragraph.textContent += "-";
+            break;
+        case "Multiply":
+            paragraph.textContent += "*";
+            break;
+        case "Divide":
+            paragraph.textContent += "/";
+            break;
+        case "Dot":
+            paragraph.textContent += ".";
+            break;
+        case "Equals":
+            values = evaluation(text);
+            num1 = parseInt(values[0]);
+            num2 = parseInt(values[2]);
+            oper = values[1];
+            
+            
+            if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2);
+            break;
+        case "Sign":
+            if (paragraph.textContent[0] === "-") paragraph.textContent = paragraph.textContent.split("").splice(0, 1, "+").join("");
+            if (paragraph.textContent[0] !== "-") paragraph.textContent = "-" + paragraph.textContent.slice(0);
+        default:
+            break;
     }
     
 });
