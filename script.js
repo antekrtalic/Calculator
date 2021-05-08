@@ -171,10 +171,10 @@ window.addEventListener('click', function(e) {
             paragraph.textContent += "3";
             break;
         case "Four":
-            paragraph.textCOntent += "4";
+            paragraph.textCntent += "4";
             break;
         case "Five":
-            paragraph.textCOntent += "5";
+            paragraph.textContent += "5";
             break;
         case "Six":
             paragraph.textContent += "6";
@@ -213,8 +213,10 @@ window.addEventListener('click', function(e) {
             if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2);
             break;
         case "Sign":
-            if (paragraph.textContent[0] === "-") paragraph.textContent = paragraph.textContent.split("").splice(0, 1, "+").join("");
+            console.log(paragraph.textContent[0]);
+            if (paragraph.textContent[0] === "-") paragraph.textContent = paragraph.textContent.replace("-", "");
             if (paragraph.textContent[0] !== "-") paragraph.textContent = "-" + paragraph.textContent.slice(0);
+            
         default:
             break;
     }
