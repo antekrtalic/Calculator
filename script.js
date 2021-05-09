@@ -213,9 +213,12 @@ window.addEventListener('click', function(e) {
             if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2);
             break;
         case "Sign":
-            console.log(paragraph.textContent[0]);
-            if (paragraph.textContent[0] === "-") paragraph.textContent = paragraph.textContent.replace("-", "");
-            if (paragraph.textContent[0] !== "-") paragraph.textContent = "-" + paragraph.textContent.slice(0);
+            
+            if (paragraph.textContent[0] === "-") {
+                paragraph.textContent = text.replace("-","");
+            } else {
+                paragraph.textContent = "-" + paragraph.textContent.slice(0);
+            }
             
         default:
             break;
