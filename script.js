@@ -113,7 +113,7 @@ window.addEventListener('keydown', function(e) {
             break;
         case "+":
             if (text.match(/[1-9]/)) {
-                if (text.indexOf("+")) paragraph.textContent += "+";
+                if (text.indexOf("+") < 0) paragraph.textContent += "+";
             }
             break;
         case "-":
@@ -197,16 +197,22 @@ window.addEventListener('click', function(e) {
             paragraph.textContent += "9";
             break;
         case "Plus":
-            if (paragraph.textContent.indexOf("+") < 0) paragraph.textContent += "+";
+            if (text.match(/[1-9]/)) {
+                if (!(text.match(/[\+\-\*\/]/))) paragraph.textContent += "+";
+            }
             break;
         case "Minus":
-            paragraph.textContent += "-";
+            if (text.match(/[1-9]/)) {
+                if (!(text.match(/[\+\-\*\/]/))) paragraph.textContent += "-";
+            }
             break;
         case "Multiply":
             paragraph.textContent += "*";
             break;
         case "Divide":
-            paragraph.textContent += "/";
+            if (text.match(/[1-9]/)) {
+                if (!(text.match(/[\+\-\*\/]/))) paragraph.textContent += "/";
+            }
             break;
         case "Dot":
             paragraph.textContent += ".";
