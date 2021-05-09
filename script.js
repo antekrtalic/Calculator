@@ -133,8 +133,11 @@ window.addEventListener('keydown', function(e) {
             if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2);
             break;
         case "F9": 
-            if (paragraph.textContent[0] === "-") paragraph.textContent = "+" + paragraph.textContent.slice(1);
-            if (paragraph.textContent[0] !== "-") paragraph.textContent = "-" + paragraph.textContent.slice(0);
+            if (paragraph.textContent[0] === "-")  {
+                paragraph.textContent = text.replace("-", "");
+            } else {
+                paragraph.textContent = "-" + paragraph.textContent.slice(0);
+            }
         default:
             break;
     }
@@ -147,6 +150,7 @@ window.addEventListener('keydown', function(e) {
 window.addEventListener('click', function(e) {
     const paragraph = document.querySelector('p');
     let text = paragraph.textContent;
+    let count_signs = 0;
 
     switch (e.target.id) {    
         case "CE":
@@ -213,13 +217,12 @@ window.addEventListener('click', function(e) {
             if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2);
             break;
         case "Sign":
-            
             if (paragraph.textContent[0] === "-") {
                 paragraph.textContent = text.replace("-","");
             } else {
                 paragraph.textContent = "-" + paragraph.textContent.slice(0);
             }
-            
+                
         default:
             break;
     }
