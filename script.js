@@ -112,7 +112,9 @@ window.addEventListener('keydown', function(e) {
             paragraph.textContent += ".";
             break;
         case "+":
-            paragraph.textContent += "+";
+            if (text.match(/[1-9]/)) {
+                if (text.indexOf("+")) paragraph.textContent += "+";
+            }
             break;
         case "-":
             paragraph.textContent += "-";
@@ -133,10 +135,12 @@ window.addEventListener('keydown', function(e) {
             if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2);
             break;
         case "F9": 
-            if (paragraph.textContent[0] === "-")  {
-                paragraph.textContent = text.replace("-", "");
-            } else {
-                paragraph.textContent = "-" + paragraph.textContent.slice(0);
+            if (text.match(/[1-9]/)) {
+                if (paragraph.textContent[0] === "-")  {
+                    paragraph.textContent = text.replace("-", "");
+                } else {
+                    paragraph.textContent = "-" + paragraph.textContent.slice(0);
+                }
             }
         default:
             break;
@@ -193,7 +197,7 @@ window.addEventListener('click', function(e) {
             paragraph.textContent += "9";
             break;
         case "Plus":
-            paragraph.textContent += "+";
+            if (paragraph.textContent.indexOf("+") < 0) paragraph.textContent += "+";
             break;
         case "Minus":
             paragraph.textContent += "-";
@@ -217,12 +221,13 @@ window.addEventListener('click', function(e) {
             if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2);
             break;
         case "Sign":
-            if (paragraph.textContent[0] === "-") {
-                paragraph.textContent = text.replace("-","");
-            } else {
-                paragraph.textContent = "-" + paragraph.textContent.slice(0);
+            if (text.match(/[1-9]/)) {
+                if (paragraph.textContent[0] === "-") {
+                    paragraph.textContent = text.replace("-","");
+                } else {
+                    paragraph.textContent = "-" + paragraph.textContent.slice(0);
+                }
             }
-                
         default:
             break;
     }
