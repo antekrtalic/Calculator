@@ -223,7 +223,10 @@ window.addEventListener('click', function(e) {
             }
             break;
         case "Dot":
-            paragraph.textContent += ".";
+            if (text.match(/^\d+\.{0, 1}\d+$/)) {
+                paragraph.textContent += ".";
+            }
+            
             break;
         case "Equals":
             values = evaluation(text);
