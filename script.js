@@ -113,17 +113,23 @@ window.addEventListener('keydown', function(e) {
             break;
         case "+":
             if (text.match(/[1-9]/)) {
-                if (text.indexOf("+") < 0) paragraph.textContent += "+";
+                if (!(text.match(/[\+\-\*\/]/))) paragraph.textContent += "+";
             }
             break;
         case "-":
-            paragraph.textContent += "-";
+            if (text.match(/[1-9]/)) {
+                if (!(text.match(/[\+\-\*\/]/))) paragraph.textContent += "-";
+            }
             break;
         case "*":
-            paragraph.textContent += "*";
+            if (text.match(/[1-9]/)) {
+                if (!(text.match(/[\+\-\*\/]/))) paragraph.textContent += "*";
+            }
             break;
         case "/":
-            paragraph.textContent += "/";
+            if (text.match(/[1-9]/)) {
+                if (!(text.match(/[\+\-\*\/]/))) paragraph.textContent += "/";
+            }
             break;
         case "Enter":
             values = evaluation(text);
@@ -207,7 +213,9 @@ window.addEventListener('click', function(e) {
             }
             break;
         case "Multiply":
-            paragraph.textContent += "*";
+            if (text.match(/[1-9]/)) {
+                if (!(text.match(/[\+\-\*\/]/))) paragraph.textContent += "*";
+            }
             break;
         case "Divide":
             if (text.match(/[1-9]/)) {
