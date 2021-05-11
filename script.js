@@ -161,7 +161,7 @@ window.addEventListener('click', function(e) {
     const paragraph = document.querySelector('p');
     let text = paragraph.textContent;
     let count_signs = 0;
-    let math_oper;
+    let math_oper, oper_pos;
 
     switch (e.target.id) {    
         case "CE":
@@ -229,7 +229,8 @@ window.addEventListener('click', function(e) {
             }
             if (text.match(/[\+\-q*\/]/)) {
                 math_oper = text.match(/[\+\-q*\/]/);
-                if (text.indexOf(math_oper) >= 0 && (!(text.indexOf(math_oper).match(/\.{1}/)))) {
+                oper_pos = text.indexOf(math_oper);
+                if (oper_pos >= 0 && (!(text.slice(oper_pos+1).match(/\.{1}/)))) {
                     paragraph.textContent += ".";
                 }
             }
