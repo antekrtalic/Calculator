@@ -161,6 +161,7 @@ window.addEventListener('click', function(e) {
     const paragraph = document.querySelector('p');
     let text = paragraph.textContent;
     let count_signs = 0;
+    let math_oper;
 
     switch (e.target.id) {    
         case "CE":
@@ -185,7 +186,7 @@ window.addEventListener('click', function(e) {
             paragraph.textContent += "3";
             break;
         case "Four":
-            paragraph.textCntent += "4";
+            paragraph.textContent += "4";
             break;
         case "Five":
             paragraph.textContent += "5";
@@ -223,10 +224,15 @@ window.addEventListener('click', function(e) {
             }
             break;
         case "Dot":
-            if (text.match(/^\d+\.{0, 1}\d+$/)) {
+            if (!(text.match(/\.{1}/)) && (!text[0].match(/\./))) {
                 paragraph.textContent += ".";
             }
-            
+            if (text.match(/[\+\-q*\/]/)) {
+                math_oper = text.match(/[\+\-q*\/]/);
+                if (text.indexOf(math_oper) >= 0 && (!(text.indexOf(math_oper).match(/\.{1}/)))) {
+                    paragraph.textContent += ".";
+                }
+            }
             break;
         case "Equals":
             values = evaluation(text);
