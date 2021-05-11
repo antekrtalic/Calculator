@@ -62,7 +62,7 @@ function operate(oper, num1, num2) {
 window.addEventListener('keydown', function(e) {
     const paragraph = document.querySelector('p');
     let text = paragraph.textContent;
-    let values, num1, num2, oper;
+    let values, num1, num2, oper, math_oper, oper_pos;
     e.className = "active";
     let selected = document.getElementsByClassName('active');
     
@@ -109,7 +109,16 @@ window.addEventListener('keydown', function(e) {
             paragraph.textContent += "9";
             break;
         case ",":
-            paragraph.textContent += ".";
+            if (!(text.match(/\.{1}/)) && (!text[0].match(/\./))) {
+                paragraph.textContent += ".";
+            }
+            if (text.match(/[\+\-q*\/]/)) {
+                math_oper = text.match(/[\+\-q*\/]/);
+                oper_pos = text.indexOf(math_oper);
+                if (oper_pos >= 0 && (!(text.slice(oper_pos+1).match(/\.{1}/)))) {
+                    paragraph.textContent += ".";
+                }
+            }
             break;
         case "+":
             if (text.match(/[1-9]/)) {
