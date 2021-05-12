@@ -36,7 +36,7 @@ function evaluation(text) {
         text = text.split("/");
         text.splice(1, 0, "/");
     }
-   
+    console.log(text);
     return text;
 }
 
@@ -142,11 +142,21 @@ window.addEventListener('keydown', function(e) {
             break;
         case "Enter":
             values = evaluation(text);
-            num1 = parseInt(values[0]);
-            num2 = parseInt(values[2]);
+            /* Checking if its integer  or float */
+
+            if (!isNaN(values[0]) && values[0].indexOf(".") < 0) {
+                num1 = parseInt(values[0]);
+            } else if (!isNaN(values[0]) && values[0].indexOf(".") >= 0) {
+                num1 = parseFloat(values[0]);
+            } else if (!isNaN(values[2]) && values[2].indexOf('.') < 0) {
+                num2 = parseInt(values[2]);
+            } else if (!isNaN(values[2]) && values[2].indexOf(".") >= 0) {
+                num2 = parseFloat(values[2]);
+            }
             oper = values[1];
             
-            
+            console.log(num1);
+            console.log(num2);
             if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2);
             break;
         case "F9": 
