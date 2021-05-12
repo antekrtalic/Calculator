@@ -23,6 +23,7 @@ function divide(a, b) {
 
 /* Dividing output for calculation */
 function evaluation(text) {
+
     if (text.includes("+")) {
         text = text.split("+");
         text.splice(1, 0, "+");
@@ -45,16 +46,16 @@ function operate(oper, num1, num2) {
     let result;
 
     /* Checking if its integer  or float */
-    // if (!isNaN(num1) && num1.indexOf(".") < 0) {
-    //     num1 = parseInt(num1);
-    // } else {
-    //     num1 = parseFloat(num1);
-    // }
-    // if (!isNaN(num2) && num2.indexOf(".") < 0) {
-    //     num2 = parseInt(num2);
-    // } else {
-    //     num2 = parseFloat(num2);
-    // }
+    if (!isNaN(num1) && num1.indexOf(".") < 0) {
+        num1 = parseInt(num1);
+    } else {
+        num1 = parseFloat(num1);
+    }
+    if (!isNaN(num2) && num2.indexOf(".") < 0) {
+        num2 = parseInt(num2);
+    } else {
+        num2 = parseFloat(num2);
+    }
 
 
     if (oper === "+") {
@@ -126,10 +127,10 @@ window.addEventListener('keydown', function(e) {
                 if (!(text.match(/\.{1}/)) && (!text[0].match(/\./))) {
                     paragraph.textContent += ".";
                 }
-                if (text.match(/[\+\-q*\/]/)) {
-                    math_oper = text.match(/[\+\-q*\/]/);
+                if (text.match(/[\+\-\*\/]/)) {
+                    math_oper = text.match(/[\+\-\*\/]/);
                     oper_pos = text.indexOf(math_oper);
-                    if (oper_pos >= 0 && (!(text.slice(oper_pos+1).match(/\./)))) {
+                    if (oper_pos >= 0 && (!(text.slice(oper_pos+1).match(/\.{1}/))) && (!(text[oper_pos+1].match(/\.{1}/)))) {
                         paragraph.textContent += ".";
                     }
                 }
@@ -188,100 +189,104 @@ window.addEventListener('click', function(e) {
     let text = paragraph.textContent;
     let count_signs = 0;
     let math_oper, oper_pos;
-
-    switch (e.target.id) {    
-        case "CE":
-            paragraph.textContent = "0";
-            break;
-        case "C":
-            paragraph.textContent = "0";
-            break;
-        case "Back":
-            paragraph.textContent = text.slice(0, text.length - 1);
-            break;
-        case "Zero":
-            paragraph.textContent += "0";
-            break;
-        case "One":
-            paragraph.textContent += "1";
-            break;
-        case "Two":
-            paragraph.textContent += "2";
-            break;
-        case "Three":
-            paragraph.textContent += "3";
-            break;
-        case "Four":
-            paragraph.textContent += "4";
-            break;
-        case "Five":
-            paragraph.textContent += "5";
-            break;
-        case "Six":
-            paragraph.textContent += "6";
-            break;
-        case "Seven":
-            paragraph.textContent += "7";
-            break;
-        case "Eight":
-            paragraph.textContent += "8";
-            break;
-        case "Nine":
-            paragraph.textContent += "9";
-            break;
-        case "Plus":
-            if (text.match(/[1-9]/)) {
-                if (!(text.match(/[\+\-\*\/]/))) paragraph.textContent += "+";
-            }
-            break;
-        case "Minus":
-            if (text.match(/[1-9]/)) {
-                if (!(text.match(/[\+\-\*\/]/))) paragraph.textContent += "-";
-            }
-            break;
-        case "Multiply":
-            if (text.match(/[1-9]/)) {
-                if (!(text.match(/[\+\-\*\/]/))) paragraph.textContent += "*";
-            }
-            break;
-        case "Divide":
-            if (text.match(/[1-9]/)) {
-                if (!(text.match(/[\+\-\*\/]/))) paragraph.textContent += "/";
-            }
-            break;
-        case "Dot":
-            if (!(text.match(/\.{1}/)) && (!text[0].match(/\./)) && (!(text.match(/[\+\-\*\/]/)))) {
-                paragraph.textContent += ".";
-            }
-            if (text.match(/[\+\-\*\/]/)) {
-                math_oper = text.match(/[\+\-\*\/]/);
-                oper_pos = text.indexOf(math_oper);
-                if (oper_pos >= 0 && (!(text.slice(oper_pos+1).match(/\.{1}/)))) {
+    if (text.length < 16) {
+        switch (e.target.id) {    
+            case "CE":
+                paragraph.textContent = "0";
+                break;
+            case "C":
+                paragraph.textContent = "0";
+                break;
+            case "Back":
+                paragraph.textContent = text.slice(0, text.length - 1);
+                break;
+            case "Zero":
+                paragraph.textContent += "0";
+                break;
+            case "One":
+                paragraph.textContent += "1";
+                break;
+            case "Two":
+                paragraph.textContent += "2";
+                break;
+            case "Three":
+                paragraph.textContent += "3";
+                break;
+            case "Four":
+                paragraph.textContent += "4";
+                break;
+            case "Five":
+                paragraph.textContent += "5";
+                break;
+            case "Six":
+                paragraph.textContent += "6";
+                break;
+            case "Seven":
+                paragraph.textContent += "7";
+                break;
+            case "Eight":
+                paragraph.textContent += "8";
+                break;
+            case "Nine":
+                paragraph.textContent += "9";
+                break;
+            case "Plus":
+                if (text.match(/[1-9]/)) {
+                    if (!(text.match(/[\+\-\*\/]/))) paragraph.textContent += "+";
+                }
+                break;
+            case "Minus":
+                if (text.match(/[1-9]/)) {
+                    if (!(text.match(/[\+\-\*\/]/))) paragraph.textContent += "-";
+                }
+                break;
+            case "Multiply":
+                if (text.match(/[1-9]/)) {
+                    if (!(text.match(/[\+\-\*\/]/))) paragraph.textContent += "*";
+                }
+                break;
+            case "Divide":
+                if (text.match(/[1-9]/)) {
+                    if (!(text.match(/[\+\-\*\/]/))) paragraph.textContent += "/";
+                }
+                break;
+            case "Dot":
+                if (!(text.match(/\.{1}/)) && (!text[0].match(/\./)) && (!(text.match(/[\+\-\*\/]/)))) {
                     paragraph.textContent += ".";
                 }
-            }
-            break;
-        case "Equals":
-            values = evaluation(text);
-            num1 = parseInt(values[0]);
-            num2 = parseInt(values[2]);
-            oper = values[1];
-            
-            
-            if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2);
-            
-            break;
-        case "Sign":
-            if (text.match(/[1-9]/)) {
-                if (paragraph.textContent[0] === "-") {
-                    paragraph.textContent = text.replace("-","");
-                } else {
-                    paragraph.textContent = "-" + paragraph.textContent.slice(0);
+                if (text.match(/[\+\-\*\/]/)) {
+                    math_oper = text.match(/[\+\-\*\/]/);
+                    oper_pos = text.indexOf(math_oper);
+                    if (oper_pos >= 0 && (!(text.slice(oper_pos+1).match(/\.{1}/))) && (!(text[oper_pos+1].match(/\.{1}/)))) {
+                        paragraph.textContent += ".";
+                    }
                 }
-            }
-        default:
-            break;
+                break;
+            case "Equals":
+                values = evaluation(text);
+                num1 = values[0];
+                num2 = values[2];
+                oper = values[1];
+                
+                
+                if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2);
+                
+                break;
+            case "Sign":
+                if (text.match(/[1-9]/)) {
+                    if (paragraph.textContent[0] === "-") {
+                        paragraph.textContent = text.replace("-","");
+                    } else {
+                        paragraph.textContent = "-" + paragraph.textContent.slice(0);
+                    }
+                }
+            default:
+                break;
+        }
+    } else {
+        if (e.key === "Backspace") {
+            paragraph.textContent = text.slice(0, text.length - 1);
+        }
     }
-    
 });
 
