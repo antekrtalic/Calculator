@@ -250,7 +250,7 @@ window.addEventListener('click', function(e) {
             }
             break;
         case "Dot":
-            if (!(text.match(/\.{1}/)) && (!text[0].match(/\./))) {
+            if (!(text.match(/\.{1}/)) && (!text[0].match(/\./)) && (!(text.match(/[\+\-\*\/]/)))) {
                 paragraph.textContent += ".";
             }
             if (text.match(/[\+\-\*\/]/)) {
