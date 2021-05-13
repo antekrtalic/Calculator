@@ -64,7 +64,7 @@ function operate(oper, num1, num2) {
         result = subtract(num1, num2);
     } else if (oper === "*") {
         result = multiply(num1, num2);
-    } else if (oper === "/") {
+    } else if (oper === "/" && (num1 !== "0" && num2 !== "0")) {
         result = divide(num1, num2);
     } else {
         alert("Enter basic math operator(+,-,*,/)");
@@ -231,23 +231,51 @@ window.addEventListener('click', function(e) {
                 paragraph.textContent += "9";
                 break;
             case "Plus":
-                if (text.match(/[1-9]/)) {
-                    if (!(text.match(/[\+\-\*\/]/))) paragraph.textContent += "+";
+                if (/[1-9]/.test(text[text.length - 1]) || /[0]/.test(text)) {
+                    paragraph.textContent += "+";
+                    values = evaluation(text);
+                    num1 = values[0];
+                    num2 = values[2];
+                    oper = values[1];
+                    
+                    
+                    if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2) + "+";
                 }
                 break;
             case "Minus":
-                if (text.match(/[1-9]/)) {
-                    if (!(text.match(/[\+\-\*\/]/))) paragraph.textContent += "-";
+                if (/[1-9]/.test(text[text.length - 1]) || /[0]/.test(text)) {
+                    paragraph.textContent += "-";
+                    values = evaluation(text);
+                    num1 = values[0];
+                    num2 = values[2];
+                    oper = values[1];
+                    
+                    
+                    if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2) + "-";
                 }
                 break;
             case "Multiply":
-                if (text.match(/[1-9]/)) {
-                    if (!(text.match(/[\+\-\*\/]/))) paragraph.textContent += "*";
+                if (/[1-9]/.test(text[text.length - 1]) || /[0]/.test(text)) {
+                    paragraph.textContent += "*";
+                    values = evaluation(text);
+                    num1 = values[0];
+                    num2 = values[2];
+                    oper = values[1];
+                    
+                    
+                    if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2) + "*";
                 }
                 break;
             case "Divide":
-                if (text.match(/[1-9]/)) {
-                    if (!(text.match(/[\+\-\*\/]/))) paragraph.textContent += "/";
+                if (/[1-9]/.test(text[text.length - 1]) || /[0]/.test(text)) {
+                    paragraph.textContent += "/";
+                    values = evaluation(text);
+                    num1 = values[0];
+                    num2 = values[2];
+                    oper = values[1];
+                    
+                    
+                    if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2) + "/";
                 }
                 break;
             case "Dot":
@@ -283,16 +311,21 @@ window.addEventListener('click', function(e) {
             default:
                 break;
         }
+        /* Calculating multiple math operations */
+
+        if (/[\+\-\*\/]/.test(text[text.length - 1]) && (/[\+\-\*\/]/.test(text.slice(0, text[text.length - 2])))) {
+            values = evaluation(text.slice(0, text[text.length - 2]));
+            num1 = values[0];
+            num2 = values[2];
+            oper = values[1];
+            
+            
+            if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2);
+        }
     } else {
         if (e.key === "Backspace") {
             paragraph.textContent = text.slice(0, text.length - 1);
         }
-    }
-
-    /* Calculating multiple math operations */
-
-    if (/[\+\-\*\/]/.test(text[text.length - 1]) && (/[\+\-\*\/]/.test(text.slice(0, text[text.length - 2])))) {
-        
     }
 });
 
