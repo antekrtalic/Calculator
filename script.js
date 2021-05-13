@@ -200,6 +200,7 @@ window.addEventListener('click', function(e) {
                 break;
             case "Back":
                 paragraph.textContent = text.slice(0, text.length - 1);
+                console.log(text.length);
                 break;
             case "Zero":
                 paragraph.textContent += "0";
@@ -239,8 +240,12 @@ window.addEventListener('click', function(e) {
                     num2 = values[2];
                     oper = values[1];
                     
+                    if (num1 === "0" || num2 === "0") {
+                        alert("Can't divide by zero");
+                        paragraph.textContent = "0";
+                    }
                     
-                    if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2) + "+";
+                    if (num1 !== "0" || num2 !== "0") paragraph.textContent = operate(oper, num1, num2) + "+";
                 }
                 break;
             case "Minus":
@@ -268,15 +273,20 @@ window.addEventListener('click', function(e) {
                 }
                 break;
             case "Divide":
-                if (/[1-9]/.test(text[text.length - 1]) || /[0]/.test(text)) {
+                if (/[1-9]/.test(text[text.length - 1])) {
                     paragraph.textContent += "/";
                     values = evaluation(text);
                     num1 = values[0];
                     num2 = values[2];
                     oper = values[1];
                     
+                    if (parseInt(num1) === 0 && parseInt(num2) === 0) {
+                        paragraph.textContent = "Result is undefined";
+                    } else if (parseInt(num2) === 0) {
+                        paragraph.textContent = "Cannot divide by zero";
+                    }
                     
-                    if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2) + "/";
+                    if (num1.match(/[1-9]/) && num2.match(/[1-9]/)) paragraph.textContent = operate(oper, num1, num2) + "/";
                 }
                 break;
             case "Dot":
@@ -329,6 +339,7 @@ window.addEventListener('click', function(e) {
     } else {
         if (e.key === "Backspace") {
             paragraph.textContent = text.slice(0, text.length - 1);
+            
         }
     }
 });
