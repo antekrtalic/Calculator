@@ -45,6 +45,12 @@ function evaluation(text) {
 function operate(oper, num1, num2) {
     let result;
 
+    if (parseInt(num1) === 0 && parseInt(num2) === 0) {
+        result = "Result is undefined";
+    } else if (parseInt(num2) === 0) {
+        result = "Cannot divide by zero";
+    }
+
     /* Checking if its integer  or float */
     if (!isNaN(num1) && num1.indexOf(".") < 0) {
         num1 = parseInt(num1);
@@ -64,7 +70,7 @@ function operate(oper, num1, num2) {
         result = subtract(num1, num2);
     } else if (oper === "*") {
         result = multiply(num1, num2);
-    } else if (oper === "/") {
+    } else if ((oper === "/") && (parseInt(num2) !== 0 || (parseInt(num1) !== 0 && parseInt(num2) !== 0))) {
         result = divide(num1, num2);
     } else {
         alert("Enter basic math operator(+,-,*,/)");
@@ -162,7 +168,7 @@ window.addEventListener('keydown', function(e) {
                 num1 = values[0];
                 num2 = values[2];
                 oper = values[1];
-                if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2);
+                if ((num1 && num2) || parseInt(num1) === 0 || parseInt(num2) === 0) paragraph.textContent = operate(oper, num1, num2); 
                 break;
             case "F9": 
                 if (text.match(/[1-9]/)) {
@@ -273,20 +279,15 @@ window.addEventListener('click', function(e) {
                 }
                 break;
             case "Divide":
-                if (/[1-9]/.test(text[text.length - 1])) {
+                if (/[1-9]/.test(text[text.length - 1]) || /[0]/.test(text)) {
                     paragraph.textContent += "/";
                     values = evaluation(text);
                     num1 = values[0];
                     num2 = values[2];
                     oper = values[1];
                     
-                    if (parseInt(num1) === 0 && parseInt(num2) === 0) {
-                        paragraph.textContent = "Result is undefined";
-                    } else if (parseInt(num2) === 0) {
-                        paragraph.textContent = "Cannot divide by zero";
-                    }
                     
-                    if (num1.match(/[1-9]/) && num2.match(/[1-9]/)) paragraph.textContent = operate(oper, num1, num2) + "/";
+                    if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2) + "/";
                 }
                 break;
             case "Dot":
@@ -308,8 +309,14 @@ window.addEventListener('click', function(e) {
                 oper = values[1];
                 
                 
-                paragraph.textContent = "0";
-                if ((num1 && num2) && (num1 !== 0 || num2 !== 0)) paragraph.textContent = operate(oper, num1, num2);
+                if (parseInt(num1) === 0 && parseInt(num2) === 0) {
+                    alert("Result is undefined");
+                    paragraph.textContent = "0";
+                } else if (parseInt(num2) === 0) {
+                    alert("Cannot divide by zero");
+                    paragraph.textContent = "0";
+                }
+                if ((num1 && num2) && (parseInt(num1) !== 0 || parseInt(num2) !== 0)) paragraph.textContent = operate(oper, num1, num2);
 
                 
                 
