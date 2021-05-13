@@ -288,5 +288,11 @@ window.addEventListener('click', function(e) {
             paragraph.textContent = text.slice(0, text.length - 1);
         }
     }
+
+    /* Calculating multiple math operations */
+
+    if (/[\+\-\*\/]/.test(text[text.length - 1]) && (/[\+\-\*\/]/.test(text.slice(0, text[text.length - 2])))) {
+        
+    }
 });
 
