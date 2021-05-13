@@ -209,36 +209,55 @@ window.addEventListener('click', function(e) {
                 console.log(text.length);
                 break;
             case "Zero":
-                paragraph.textContent += "0";
+                
+                    paragraph.textContent += "0";
+                
                 break;
             case "One":
-                paragraph.textContent += "1";
+                    paragraph.textContent += "1";
                 break;
             case "Two":
-                paragraph.textContent += "2";
+                
+                    paragraph.textContent += "2";
+                
                 break;
             case "Three":
-                paragraph.textContent += "3";
+                
+                    paragraph.textContent += "3";
+                
                 break;
             case "Four":
-                paragraph.textContent += "4";
+                
+                    paragraph.textContent += "4";
+                
                 break;
             case "Five":
-                paragraph.textContent += "5";
+                
+                    paragraph.textContent += "5";
+                              
                 break;
             case "Six":
-                paragraph.textContent += "6";
+                
+                    paragraph.textContent += "6";
+                
                 break;
             case "Seven":
-                paragraph.textContent += "7";
+                
+                    paragraph.textContent += "7";
+                
                 break;
             case "Eight":
-                paragraph.textContent += "8";
+                
+                    paragraph.textContent += "8";
+                
                 break;
             case "Nine":
-                paragraph.textContent += "9";
+                
+                    paragraph.textContent += "9";
+                
                 break;
             case "Plus":
+
                 if (/[1-9]/.test(text[text.length - 1]) || /[0]/.test(text)) {
                     paragraph.textContent += "+";
                     values = evaluation(text);
@@ -254,6 +273,7 @@ window.addEventListener('click', function(e) {
                     if (num1 !== "0" || num2 !== "0") paragraph.textContent = operate(oper, num1, num2) + "+";
                 }
                 break;
+
             case "Minus":
                 if (/[1-9]/.test(text[text.length - 1]) || /[0]/.test(text)) {
                     paragraph.textContent += "-";
@@ -266,6 +286,7 @@ window.addEventListener('click', function(e) {
                     if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2) + "-";
                 }
                 break;
+
             case "Multiply":
                 if (/[1-9]/.test(text[text.length - 1]) || /[0]/.test(text)) {
                     paragraph.textContent += "*";
@@ -278,14 +299,15 @@ window.addEventListener('click', function(e) {
                     if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2) + "*";
                 }
                 break;
+
             case "Divide":
                 if (/[1-9]/.test(text[text.length - 1]) || /[0]/.test(text)) {
+
                     paragraph.textContent += "/";
                     values = evaluation(text);
                     num1 = values[0];
                     num2 = values[2];
                     oper = values[1];
-                    
                     
                     if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2) + "/";
                 }
@@ -317,10 +339,8 @@ window.addEventListener('click', function(e) {
                     paragraph.textContent = "0";
                 }
                 if ((num1 && num2) && (parseInt(num1) !== 0 || parseInt(num2) !== 0)) paragraph.textContent = operate(oper, num1, num2);
-
-                
-                
                 break;
+
             case "Sign":
                 if (text.match(/[1-9]/)) {
                     if (paragraph.textContent[0] === "-") {
@@ -329,6 +349,7 @@ window.addEventListener('click', function(e) {
                         paragraph.textContent = "-" + paragraph.textContent.slice(0);
                     }
                 }
+
             default:
                 break;
         }
