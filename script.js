@@ -64,11 +64,12 @@ function operate(oper, num1, num2) {
         result = subtract(num1, num2);
     } else if (oper === "*") {
         result = multiply(num1, num2);
-    } else if (oper === "/" && (num1 !== "0" && num2 !== "0")) {
+    } else if (oper === "/") {
         result = divide(num1, num2);
     } else {
         alert("Enter basic math operator(+,-,*,/)");
     }
+    
     return result;
 }
 
@@ -297,7 +298,10 @@ window.addEventListener('click', function(e) {
                 oper = values[1];
                 
                 
-                if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2);
+                paragraph.textContent = "0";
+                if ((num1 && num2) && (num1 !== 0 || num2 !== 0)) paragraph.textContent = operate(oper, num1, num2);
+
+                
                 
                 break;
             case "Sign":
