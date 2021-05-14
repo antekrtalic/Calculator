@@ -215,7 +215,7 @@ window.addEventListener('click', function(e) {
                 break;
             case "One":
                     if (text[0] === "0") {
-                        paragraph,textContent = "1";
+                        paragraph.textContent = "1";
                     } else {
                         paragraph.textContent += "1";
                     }
@@ -242,29 +242,39 @@ window.addEventListener('click', function(e) {
                     }
                 break;
             case "Five":
-                
-                    paragraph.textContent += "5";
-                              
+                    if (text[0] === "0") {
+                        paragraph.textContent = "5";
+                    } else {
+                        paragraph.textContent += "5";
+                    }          
                 break;
             case "Six":
-                
-                    paragraph.textContent += "6";
-                
+                    if (text[0] === "0") {
+                        paragraph.textContent = "6";
+                    } else {
+                        paragraph.textContent += "6";
+                    }
                 break;
             case "Seven":
-                
-                    paragraph.textContent += "7";
-                
+                    if (text[0] === "0") {
+                        paragraph.textContent = "7";
+                    } else {
+                        paragraph.textContent += "7";
+                    }
                 break;
             case "Eight":
-                
-                    paragraph.textContent += "8";
-                
+                    if (text[0] === "0") {
+                        paragraph.textContent = "8";
+                    } else {
+                        paragraph.textContent += "8";
+                    }
                 break;
             case "Nine":
-                
-                    paragraph.textContent += "9";
-                
+                    if (text[0] === "0") {
+                        paragraph.textContent = "9";
+                    } else {
+                        paragraph.textContent += "9";
+                    }
                 break;
             case "Plus":
 
@@ -275,12 +285,16 @@ window.addEventListener('click', function(e) {
                     num2 = values[2];
                     oper = values[1];
                     
-                    if (num1 === "0" || num2 === "0") {
-                        alert("Can't divide by zero");
+                    if (parseInt(num1) === 0 && parseInt(num2) === 0) {
+                        alert("Result is undefined");
+                        paragraph.textContent = "0";
+                    } else if (parseInt(num2) === 0) {
+                        alert("Cannot divide by zero");
                         paragraph.textContent = "0";
                     }
                     
-                    if (num1 !== "0" || num2 !== "0") paragraph.textContent = operate(oper, num1, num2) + "+";
+                    if (parseInt(num1) && parseInt(num2)) paragraph.textContent = operate(oper, num1, num2) + "+";
+                    
                 }
                 break;
 
@@ -340,7 +354,6 @@ window.addEventListener('click', function(e) {
                 num2 = values[2];
                 oper = values[1];
                 
-                
                 if (parseInt(num1) === 0 && parseInt(num2) === 0) {
                     alert("Result is undefined");
                     paragraph.textContent = "0";
@@ -348,7 +361,8 @@ window.addEventListener('click', function(e) {
                     alert("Cannot divide by zero");
                     paragraph.textContent = "0";
                 }
-                if ((num1 && num2) && (parseInt(num1) !== 0 || parseInt(num2) !== 0)) paragraph.textContent = operate(oper, num1, num2);
+
+                if ((parseInt(num1) && parseInt(num2))) paragraph.textContent = operate(oper, num1, num2);
                 break;
 
             case "Sign":
