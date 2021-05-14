@@ -307,6 +307,7 @@ window.addEventListener('click', function(e) {
 
             case "Minus":
                 if (/[1-9]/.test(text[text.length - 1]) || /[0]/.test(text)) {
+                    
                     paragraph.textContent += "-";
                     values = evaluation(text);
                     num1 = values[0];
@@ -335,7 +336,7 @@ window.addEventListener('click', function(e) {
                     }
 
                     /* Outputting result depending if its float or integer */
-                    if (num1 && num2) {
+                    if ((num1 && num2) || num1 === 0 || num2 === 0) {
                         result = operate(oper, num1, num2);
                         if (result.toString().includes(".")) {
                             paragraph.textContent = result.toFixed(2) + "-";
