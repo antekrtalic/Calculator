@@ -214,22 +214,32 @@ window.addEventListener('click', function(e) {
                 
                 break;
             case "One":
-                    paragraph.textContent += "1";
+                    if (text[0] === "0") {
+                        paragraph,textContent = "1";
+                    } else {
+                        paragraph.textContent += "1";
+                    }
                 break;
             case "Two":
-                
-                    paragraph.textContent += "2";
-                
+                    if (text[0] === "0") {
+                        paragraph.textContent = "2";
+                    } else {
+                        paragraph.textContent += "2";
+                    }
                 break;
             case "Three":
-                
-                    paragraph.textContent += "3";
-                
+                    if (text[0] === "0") {
+                        paragraph.textContent = "3";
+                    } else {
+                        paragraph.textContent += "3";
+                    }
                 break;
             case "Four":
-                
-                    paragraph.textContent += "4";
-                
+                    if (text[0] === "0") {
+                        paragraph.textContent = "4";
+                    } else {
+                        paragraph.textContent += "4";
+                    }
                 break;
             case "Five":
                 
