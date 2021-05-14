@@ -51,19 +51,6 @@ function operate(oper, num1, num2) {
         result = "Cannot divide by zero";
     }
 
-    /* Checking if its integer  or float */
-    if (!isNaN(num1) && num1.indexOf(".") < 0) {
-        num1 = parseInt(num1);
-    } else {
-        num1 = parseFloat(num1);
-    }
-    if (!isNaN(num2) && num2.indexOf(".") < 0) {
-        num2 = parseInt(num2);
-    } else {
-        num2 = parseFloat(num2);
-    }
-
-
     if (oper === "+") {
         result = add(num1, num2);
     } else if (oper === "-") {
@@ -306,8 +293,15 @@ window.addEventListener('click', function(e) {
                     num2 = values[2];
                     oper = values[1];
                     
-                    
-                    if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2) + "-";
+                    if (parseInt(num1) === 0 && parseInt(num2) === 0) {
+                        alert("Result is undefined");
+                        paragraph.textContent = "0";
+                    } else if (parseInt(num2) === 0) {
+                        alert("Cannot divide by zero");
+                        paragraph.textContent = "0";
+                    }
+
+                    if (parseInt(num1) && parseInt(num2)) paragraph.textContent = operate(oper, num1, num2) + "-";
                 }
                 break;
 
@@ -319,8 +313,15 @@ window.addEventListener('click', function(e) {
                     num2 = values[2];
                     oper = values[1];
                     
-                    
-                    if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2) + "*";
+                    if (parseInt(num1) === 0 && parseInt(num2) === 0) {
+                        alert("Result is undefined");
+                        paragraph.textContent = "0";
+                    } else if (parseInt(num2) === 0) {
+                        alert("Cannot divide by zero");
+                        paragraph.textContent = "0";
+                    }
+
+                    if (parseInt(num1) && parseInt(num2)) paragraph.textContent = operate(oper, num1, num2) + "*";
                 }
                 break;
 
@@ -333,7 +334,15 @@ window.addEventListener('click', function(e) {
                     num2 = values[2];
                     oper = values[1];
                     
-                    if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2) + "/";
+                    if (parseInt(num1) === 0 && parseInt(num2) === 0) {
+                        alert("Result is undefined");
+                        paragraph.textContent = "0";
+                    } else if (parseInt(num2) === 0) {
+                        alert("Cannot divide by zero");
+                        paragraph.textContent = "0";
+                    }
+
+                    if (parseInt(num1) && parseInt(num2)) paragraph.textContent = operate(oper, num1, num2) + "/";
                 }
                 break;
             case "Dot":
@@ -353,16 +362,29 @@ window.addEventListener('click', function(e) {
                 num1 = values[0];
                 num2 = values[2];
                 oper = values[1];
+
+                /* Checking if its integer  or float */
+                if (!isNaN(num1) && num1.indexOf(".") < 0) {
+                    num1 = parseInt(num1);
+                } else {
+                    num1 = parseFloat(num1);
+                }
+                if (!isNaN(num2) && num2.indexOf(".") < 0) {
+                    num2 = parseInt(num2);
+                } else {
+                    num2 = parseFloat(num2);
+                }
                 
-                if (parseInt(num1) === 0 && parseInt(num2) === 0) {
+                /* Checking if any number is zero while using divide on it*/
+                if (num1 === 0 && num2 === 0) {
                     alert("Result is undefined");
                     paragraph.textContent = "0";
-                } else if (parseInt(num2) === 0) {
+                } else if (num2 === 0) {
                     alert("Cannot divide by zero");
                     paragraph.textContent = "0";
                 }
 
-                if ((parseInt(num1) && parseInt(num2))) paragraph.textContent = operate(oper, num1, num2);
+                if (num1 && num2) paragraph.textContent = operate(oper, num1, num2);
                 break;
 
             case "Sign":
