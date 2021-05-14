@@ -192,71 +192,72 @@ window.addEventListener('click', function(e) {
                 break;
             case "Back":
                 paragraph.textContent = text.slice(0, text.length - 1);
-                console.log(text.length);
                 break;
             case "Zero":
-                
-                    paragraph.textContent += "0";
-                
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text))) {
+                        paragraph.textContent = "0";
+                    } else {
+                        paragraph.textContent += "0";
+                    }
                 break;
             case "One":
-                    if (text[0] === "0") {
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text))) {
                         paragraph.textContent = "1";
                     } else {
                         paragraph.textContent += "1";
                     }
                 break;
             case "Two":
-                    if (text[0] === "0") {
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text))) {
                         paragraph.textContent = "2";
                     } else {
                         paragraph.textContent += "2";
                     }
                 break;
             case "Three":
-                    if (text[0] === "0") {
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text))) {
                         paragraph.textContent = "3";
                     } else {
                         paragraph.textContent += "3";
                     }
                 break;
             case "Four":
-                    if (text[0] === "0") {
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text))) {
                         paragraph.textContent = "4";
                     } else {
                         paragraph.textContent += "4";
                     }
                 break;
             case "Five":
-                    if (text[0] === "0") {
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text))) {
                         paragraph.textContent = "5";
                     } else {
                         paragraph.textContent += "5";
                     }          
                 break;
             case "Six":
-                    if (text[0] === "0") {
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text))) {
                         paragraph.textContent = "6";
                     } else {
                         paragraph.textContent += "6";
                     }
                 break;
             case "Seven":
-                    if (text[0] === "0") {
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text))) {
                         paragraph.textContent = "7";
                     } else {
                         paragraph.textContent += "7";
                     }
                 break;
             case "Eight":
-                    if (text[0] === "0") {
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text))) {
                         paragraph.textContent = "8";
                     } else {
                         paragraph.textContent += "8";
                     }
                 break;
             case "Nine":
-                    if (text[0] === "0") {
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text))) {
                         paragraph.textContent = "9";
                     } else {
                         paragraph.textContent += "9";
@@ -458,15 +459,25 @@ window.addEventListener('click', function(e) {
                 }
                 
                 /* Checking if any number is zero while using divide on it*/
-                if (num1 === 0 && num2 === 0) {
+                if (num1 === 0 && num2 === 0 && oper === "/") {
                     alert("Result is undefined");
                     paragraph.textContent = "0";
-                } else if (num2 === 0) {
+                } else if (num2 === 0 && oper === "/") {
                     alert("Cannot divide by zero");
                     paragraph.textContent = "0";
                 }
 
-                if (num1 && num2) paragraph.textContent = operate(oper, num1, num2);
+                /* Outputting result depending if its float or integer */
+                if (num1 && num2) {
+                    result = operate(oper, num1, num2);
+                    if (result.toString().includes(".")) {
+                        paragraph.textContent = result.toFixed(2);
+                    } else {
+                        paragraph.textContent = result;
+                    }
+                }
+            
+                
                 break;
 
             case "Sign":
