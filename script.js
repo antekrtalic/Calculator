@@ -37,7 +37,6 @@ function evaluation(text) {
         text = text.split("/");
         text.splice(1, 0, "/");
     }
-    console.log(text);
     return text;
 }
 
@@ -181,7 +180,7 @@ window.addEventListener('keydown', function(e) {
 window.addEventListener('click', function(e) {
     const paragraph = document.querySelector('p');
     let text = paragraph.textContent;
-    let count_signs = 0;
+    let result;
     let math_oper, oper_pos;
     if (text.length < 16) {
         switch (e.target.id) {    
@@ -272,16 +271,36 @@ window.addEventListener('click', function(e) {
                     num2 = values[2];
                     oper = values[1];
                     
-                    if (parseInt(num1) === 0 && parseInt(num2) === 0) {
+                    /* Checking if its integer  or float */
+                    if (!isNaN(num1) && num1.indexOf(".") < 0) {
+                        num1 = parseInt(num1);
+                    } else {
+                        num1 = parseFloat(num1);
+                    }
+                    if (!isNaN(num2) && num2.indexOf(".") < 0) {
+                        num2 = parseInt(num2);
+                    } else {
+                        num2 = parseFloat(num2);
+                    }
+
+                    /* Checking if any number is zero while using divide on it*/
+                    if (num1 === 0 && num2 === 0) {
                         alert("Result is undefined");
                         paragraph.textContent = "0";
-                    } else if (parseInt(num2) === 0) {
+                    } else if (num2 === 0) {
                         alert("Cannot divide by zero");
                         paragraph.textContent = "0";
                     }
                     
-                    if (parseInt(num1) && parseInt(num2)) paragraph.textContent = operate(oper, num1, num2) + "+";
-                    
+                    /* Outputting result depending if its float or integer */
+                    if (num1 && num2) {
+                        result = operate(oper, num1, num2);
+                        if (result.toString().includes(".")) {
+                            paragraph.textContent = result.toFixed(2) + "+";
+                        } else {
+                            paragraph.textContent = result + "+";
+                        }
+                    } 
                 }
                 break;
 
@@ -293,15 +312,36 @@ window.addEventListener('click', function(e) {
                     num2 = values[2];
                     oper = values[1];
                     
-                    if (parseInt(num1) === 0 && parseInt(num2) === 0) {
+                    /* Checking if its integer  or float */
+                    if (!isNaN(num1) && num1.indexOf(".") < 0) {
+                        num1 = parseInt(num1);
+                    } else {
+                        num1 = parseFloat(num1);
+                    }
+                    if (!isNaN(num2) && num2.indexOf(".") < 0) {
+                        num2 = parseInt(num2);
+                    } else {
+                        num2 = parseFloat(num2);
+                    }
+
+                    /* Checking if any number is zero while using divide on it*/
+                    if (num1 === 0 && num2 === 0) {
                         alert("Result is undefined");
                         paragraph.textContent = "0";
-                    } else if (parseInt(num2) === 0) {
+                    } else if (num2 === 0) {
                         alert("Cannot divide by zero");
                         paragraph.textContent = "0";
                     }
 
-                    if (parseInt(num1) && parseInt(num2)) paragraph.textContent = operate(oper, num1, num2) + "-";
+                    /* Outputting result depending if its float or integer */
+                    if (num1 && num2) {
+                        result = operate(oper, num1, num2);
+                        if (result.toString().includes(".")) {
+                            paragraph.textContent = result.toFixed(2) + "-";
+                        } else {
+                            paragraph.textContent = result + "-";
+                        }
+                    }
                 }
                 break;
 
@@ -313,15 +353,36 @@ window.addEventListener('click', function(e) {
                     num2 = values[2];
                     oper = values[1];
                     
-                    if (parseInt(num1) === 0 && parseInt(num2) === 0) {
+                    /* Checking if its integer  or float */
+                    if (!isNaN(num1) && num1.indexOf(".") < 0) {
+                        num1 = parseInt(num1);
+                    } else {
+                        num1 = parseFloat(num1);
+                    }
+                    if (!isNaN(num2) && num2.indexOf(".") < 0) {
+                        num2 = parseInt(num2);
+                    } else {
+                        num2 = parseFloat(num2);
+                    }
+
+                    /* Checking if any number is zero while using divide on it*/
+                    if (num1 === 0 && num2 === 0) {
                         alert("Result is undefined");
                         paragraph.textContent = "0";
-                    } else if (parseInt(num2) === 0) {
+                    } else if (num2 === 0) {
                         alert("Cannot divide by zero");
                         paragraph.textContent = "0";
                     }
 
-                    if (parseInt(num1) && parseInt(num2)) paragraph.textContent = operate(oper, num1, num2) + "*";
+                    /* Outputting result depending if its float or integer */
+                    if (num1 && num2) {
+                        result = operate(oper, num1, num2);
+                        if (result.toString().includes(".")) {
+                            paragraph.textContent = result.toFixed(2) + "*";
+                        } else {
+                            paragraph.textContent = result + "*";
+                        }
+                    }
                 }
                 break;
 
@@ -334,15 +395,36 @@ window.addEventListener('click', function(e) {
                     num2 = values[2];
                     oper = values[1];
                     
-                    if (parseInt(num1) === 0 && parseInt(num2) === 0) {
+                    /* Checking if its integer  or float */
+                    if (!isNaN(num1) && num1.indexOf(".") < 0) {
+                        num1 = parseInt(num1);
+                    } else {
+                        num1 = parseFloat(num1);
+                    }
+                    if (!isNaN(num2) && num2.indexOf(".") < 0) {
+                        num2 = parseInt(num2);
+                    } else {
+                        num2 = parseFloat(num2);
+                    }
+
+                    /* Checking if any number is zero while using divide on it*/
+                    if (num1 === 0 && num2 === 0) {
                         alert("Result is undefined");
                         paragraph.textContent = "0";
-                    } else if (parseInt(num2) === 0) {
+                    } else if (num2 === 0) {
                         alert("Cannot divide by zero");
                         paragraph.textContent = "0";
                     }
 
-                    if (parseInt(num1) && parseInt(num2)) paragraph.textContent = operate(oper, num1, num2) + "/";
+                    /* Outputting result depending if its float or integer */
+                    if (num1 && num2) {
+                        result = operate(oper, num1, num2);
+                        if (result.toString().includes(".")) {
+                            paragraph.textContent = result.toFixed(2) + "/";
+                        } else {
+                            paragraph.textContent = result + "/";
+                        }
+                    }
                 }
                 break;
             case "Dot":
