@@ -327,16 +327,16 @@ window.addEventListener('click', function(e) {
                     }
 
                     /* Checking if any number is zero while using divide on it*/
-                    if (num1 === 0 && num2 === 0) {
+                    if (num1 === 0 && num2 === 0 && oper === "/") {
                         alert("Result is undefined");
                         paragraph.textContent = "0";
-                    } else if (num2 === 0) {
+                    } else if (num2 === 0 && oper === "/") {
                         alert("Cannot divide by zero");
                         paragraph.textContent = "0";
                     }
 
                     /* Outputting result depending if its float or integer */
-                    if ((num1 && num2) || num1 === 0 || num2 === 0) {
+                    if (((num1 && num2) || (num1 === 0 || num2 === 0)) && oper !== "/") {
                         result = operate(oper, num1, num2);
                         if (result.toString().includes(".")) {
                             paragraph.textContent = result.toFixed(2) + "-";
