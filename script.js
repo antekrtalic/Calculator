@@ -13,11 +13,7 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-    if (a === 0 || b === 0) {
-        alert("Cannot divide by zero");
-    }else {
-        return a / b;
-    }
+    return a / b;
     
 }
 
@@ -44,11 +40,11 @@ function evaluation(text) {
 function operate(oper, num1, num2) {
     let result;
 
-    if (parseInt(num1) === 0 && parseInt(num2) === 0) {
-        result = "Result is undefined";
-    } else if (parseInt(num2) === 0) {
-        result = "Cannot divide by zero";
-    }
+    // if (parseInt(num1) === 0 && parseInt(num2) === 0) {
+    //     result = "Result is undefined";
+    // } else if (parseInt(num2) === 0) {
+    //     result = "Cannot divide by zero";
+    // }
 
     if (oper === "+") {
         result = add(num1, num2);
@@ -56,7 +52,7 @@ function operate(oper, num1, num2) {
         result = subtract(num1, num2);
     } else if (oper === "*") {
         result = multiply(num1, num2);
-    } else if ((oper === "/") && (parseInt(num2) !== 0 || (parseInt(num1) !== 0 && parseInt(num2) !== 0))) {
+    } else if ((oper === "/") && (num2 !== 0)) {
         result = divide(num1, num2);
     } else {
         alert("Enter basic math operator(+,-,*,/)");
@@ -313,7 +309,7 @@ window.addEventListener('click', function(e) {
                     num1 = values[0];
                     num2 = values[2];
                     oper = values[1];
-                    
+                    console.log(values);
                     /* Checking if its integer  or float */
                     if (!isNaN(num1) && num1.indexOf(".") < 0) {
                         num1 = parseInt(num1);
@@ -334,10 +330,12 @@ window.addEventListener('click', function(e) {
                         alert("Cannot divide by zero");
                         paragraph.textContent = "0";
                     }
-
+                    console.log(typeof(num1));
+                    console.log(typeof(num2));
                     /* Outputting result depending if its float or integer */
-                    if (((num1 && num2) || (num1 === 0 || num2 === 0)) && oper !== "/") {
+                    if ((num1 && num2) || num2 !== 0) {
                         result = operate(oper, num1, num2);
+                        
                         if (result.toString().includes(".")) {
                             paragraph.textContent = result.toFixed(2) + "-";
                         } else {
@@ -375,9 +373,9 @@ window.addEventListener('click', function(e) {
                         alert("Cannot divide by zero");
                         paragraph.textContent = "0";
                     }
-
+                    
                     /* Outputting result depending if its float or integer */
-                    if (num1 && num2) {
+                    if ((num1 && num2) || num1 === 0) {
                         result = operate(oper, num1, num2);
                         if (result.toString().includes(".")) {
                             paragraph.textContent = result.toFixed(2) + "*";
