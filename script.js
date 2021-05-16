@@ -302,7 +302,7 @@ window.addEventListener('click', function(e) {
                 break;
 
             case "Minus":
-                if (/[1-9]/.test(text[text.length - 1]) || /[0]/.test(text)) {
+                if (/[1-9]/.test(text[text.length - 1]) || /[0]/.test(text[text.length - 1])) {
                     
                     paragraph.textContent += "-";
                     values = evaluation(text);
