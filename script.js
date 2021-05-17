@@ -192,69 +192,110 @@ window.addEventListener('click', function(e) {
             case "Zero":
                     if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
                         paragraph.textContent = "0";
+                    } else if (text.includes(".")) {
+                        if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
+                            paragraph.textContent += "0";
+                        }
                     } else {
                         paragraph.textContent += "0";
                     }
                 break;
             case "One":
-                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text))) {
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
                         paragraph.textContent = "1";
+                    } else if (text.includes(".")) {
+                        if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
+                            paragraph.textContent += "1";
+                        }
                     } else {
                         paragraph.textContent += "1";
                     }
+
                 break;
             case "Two":
                     if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
                         paragraph.textContent = "2";
+                    } else if (text.includes(".")) {
+                        if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
+                            paragraph.textContent += "2";
+                        }
                     } else {
                         paragraph.textContent += "2";
                     }
                 break;
             case "Three":
-                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text))) {
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
                         paragraph.textContent = "3";
+                    } else if (text.includes(".")) {
+                        if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
+                            paragraph.textContent += "3";
+                        }
                     } else {
                         paragraph.textContent += "3";
                     }
                 break;
             case "Four":
-                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text))) {
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
                         paragraph.textContent = "4";
+                    } else if (text.includes(".")) {
+                        if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
+                            paragraph.textContent += "4";
+                        }
                     } else {
                         paragraph.textContent += "4";
                     }
                 break;
             case "Five":
-                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text))) {
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
                         paragraph.textContent = "5";
+                    } else if (text.includes(".")) {
+                        if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
+                            paragraph.textContent += "5";
+                        }
                     } else {
                         paragraph.textContent += "5";
                     }          
                 break;
             case "Six":
-                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text))) {
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
                         paragraph.textContent = "6";
+                    } else if (text.includes(".")) {
+                        if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
+                            paragraph.textContent += "6";
+                        }
                     } else {
                         paragraph.textContent += "6";
                     }
                 break;
             case "Seven":
-                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text))) {
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
                         paragraph.textContent = "7";
+                    } else if (text.includes(".")) {
+                        if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
+                            paragraph.textContent += "7";
+                        }
                     } else {
                         paragraph.textContent += "7";
                     }
                 break;
             case "Eight":
-                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text))) {
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
                         paragraph.textContent = "8";
+                    } else if (text.includes(".")) {
+                        if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
+                            paragraph.textContent += "8";
+                        }
                     } else {
                         paragraph.textContent += "8";
                     }
                 break;
             case "Nine":
-                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text))) {
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
                         paragraph.textContent = "9";
+                    } else if (text.includes(".")) {
+                        if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
+                            paragraph.textContent += "9";
+                        }
                     } else {
                         paragraph.textContent += "9";
                     }
@@ -487,7 +528,6 @@ window.addEventListener('click', function(e) {
                     }
                 }
             
-                
                 break;
 
             case "Sign":
