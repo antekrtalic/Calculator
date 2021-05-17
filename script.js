@@ -261,7 +261,7 @@ window.addEventListener('click', function(e) {
                 break;
             case "Plus":
 
-                if (/[1-9]/.test(text[text.length - 1]) || /[0]/.test(text)) {
+                if (/[1-9]/.test(text[text.length - 1]) || /[0]/.test(text[text.length - 1])) {
                     paragraph.textContent += "+";
                     values = evaluation(text);
                     num1 = values[0];
@@ -290,7 +290,7 @@ window.addEventListener('click', function(e) {
                     }
                     
                     /* Outputting result depending if its float or integer */
-                    if (num1 && num2) {
+                    if ((num1 && num2) || (num1 === 0 && num2)) {
                         result = operate(oper, num1, num2);
                         if (result.toString().includes(".")) {
                             paragraph.textContent = result.toFixed(2) + "+";
@@ -330,10 +330,10 @@ window.addEventListener('click', function(e) {
                         alert("Cannot divide by zero");
                         paragraph.textContent = "0";
                     }
-                    console.log(typeof(num1));
-                    console.log(typeof(num2));
+                    console.log(num1);
+                    console.log(num2);
                     /* Outputting result depending if its float or integer */
-                    if ((num1 && num2) || num2 !== 0) {
+                    if ((num1 && num2) || (num1 === 0 && num2)) {
                         result = operate(oper, num1, num2);
                         
                         if (result.toString().includes(".")) {
@@ -346,7 +346,7 @@ window.addEventListener('click', function(e) {
                 break;
 
             case "Multiply":
-                if (/[1-9]/.test(text[text.length - 1]) || /[0]/.test(text)) {
+                if (/[1-9]/.test(text[text.length - 1]) || /[0]/.test(text[text.length - 1])) {
                     paragraph.textContent += "*";
                     values = evaluation(text);
                     num1 = values[0];
@@ -373,9 +373,9 @@ window.addEventListener('click', function(e) {
                         alert("Cannot divide by zero");
                         paragraph.textContent = "0";
                     }
-                    
+                    console.log(num2);
                     /* Outputting result depending if its float or integer */
-                    if ((num1 && num2) || num1 === 0) {
+                    if ((num1 && num2) || (num1 === 0 && num2)) {
                         result = operate(oper, num1, num2);
                         if (result.toString().includes(".")) {
                             paragraph.textContent = result.toFixed(2) + "*";
@@ -387,7 +387,7 @@ window.addEventListener('click', function(e) {
                 break;
 
             case "Divide":
-                if (/[1-9]/.test(text[text.length - 1]) || /[0]/.test(text)) {
+                if (/[1-9]/.test(text[text.length - 1]) || /[0]/.test(text[text.length - 1])) {
 
                     paragraph.textContent += "/";
                     values = evaluation(text);
@@ -417,7 +417,7 @@ window.addEventListener('click', function(e) {
                     }
 
                     /* Outputting result depending if its float or integer */
-                    if (num1 && num2) {
+                    if ((num1 && num2) || (num1 === 0 && num2)) {
                         result = operate(oper, num1, num2);
                         if (result.toString().includes(".")) {
                             paragraph.textContent = result.toFixed(2) + "/";
