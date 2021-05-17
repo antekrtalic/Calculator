@@ -190,9 +190,9 @@ window.addEventListener('click', function(e) {
                 paragraph.textContent = text.slice(0, text.length - 1);
                 break;
             case "Zero":
-                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text))) {
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
                         paragraph.textContent = "0";
-                    } else if (text[0] === "0" && text.includes(".")){
+                    } else {
                         paragraph.textContent += "0";
                     }
                 break;
@@ -204,7 +204,7 @@ window.addEventListener('click', function(e) {
                     }
                 break;
             case "Two":
-                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text))) {
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
                         paragraph.textContent = "2";
                     } else {
                         paragraph.textContent += "2";
