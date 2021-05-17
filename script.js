@@ -176,7 +176,9 @@ window.addEventListener('keydown', function(e) {
 window.addEventListener('click', function(e) {
     const paragraph = document.querySelector('p');
     let text = paragraph.textContent;
-    let result;
+    let result, oper;
+    let num1 = "";
+    let num2 = "";
     let math_oper, oper_pos;
     if (text.length < 16) {
         switch (e.target.id) {    
@@ -192,7 +194,7 @@ window.addEventListener('click', function(e) {
             case "Zero":
                     if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
                         paragraph.textContent = "0";
-                    } else if (text.includes(".")) {
+                    } else if (text.includes(".") || num2.includes(".")) {
                         if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
                             paragraph.textContent += "0";
                         }
@@ -334,14 +336,7 @@ window.addEventListener('click', function(e) {
                         }
                         
                         /* Outputting result depending if its float or integer */
-                        if ((num1 && num2) || (num1 === 0 && num2)) {
-                            result = operate(oper, num1, num2);
-                            if (result.toString().includes(".")) {
-                                paragraph.textContent = result.toFixed(2) + "+";
-                            } else {
-                                paragraph.textContent = result + "+";
-                            }
-                        } 
+                        if ((num1 && num2) || (num1 === 0 && num2)) paragraph.textContent = operate(oper, num1, num2) + "+";
                     } 
                 break;
 
@@ -379,15 +374,7 @@ window.addEventListener('click', function(e) {
                         }
                         
                         /* Outputting result depending if its float or integer */
-                        if ((num1 && num2) || (num1 === 0 && num2)) {
-                            result = operate(oper, num1, num2);
-                            
-                            if (result.toString().includes(".")) {
-                                paragraph.textContent = result.toFixed(2) + "-";
-                            } else {
-                                paragraph.textContent = result + "-";
-                            }
-                        }
+                        if ((num1 && num2) || (num1 === 0 && num2)) paragraph.textContent = operate(oper, num1, num2) + "-";
                     }
                 break;
 
@@ -424,14 +411,7 @@ window.addEventListener('click', function(e) {
                         }
                         console.log(num2);
                         /* Outputting result depending if its float or integer */
-                        if ((num1 && num2) || (num1 === 0 && num2)) {
-                            result = operate(oper, num1, num2);
-                            if (result.toString().includes(".")) {
-                                paragraph.textContent = result.toFixed(2) + "*";
-                            } else {
-                                paragraph.textContent = result + "*";
-                            }
-                        }
+                        if ((num1 && num2) || (num1 === 0 && num2)) paragraph.textContent = operate(oper, num1, num2) + "*";
                     }
                 break;
 
@@ -472,12 +452,12 @@ window.addEventListener('click', function(e) {
                         if ((num1 && num2) || (num1 === 0 && num2)) {
                             result = operate(oper, num1, num2);
                             if (result.toString().includes(".")) {
-                                paragraph.textContent = result.toFixed(2) + "/";
+                                paragraph.textContent = result.toFixed(1) + "/";
                             } else {
                                 paragraph.textContent = result + "/";
                             }
-                        }
-                    }
+                        } 
+                    }  
                 break;
             case "Dot":
                 if (!(text.match(/\.{1}/)) && (!text[0].match(/\./)) && (!(text.match(/[\+\-\*\/]/)))) {
