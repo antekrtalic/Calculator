@@ -330,8 +330,7 @@ window.addEventListener('click', function(e) {
                         alert("Cannot divide by zero");
                         paragraph.textContent = "0";
                     }
-                    console.log(num1);
-                    console.log(num2);
+                    
                     /* Outputting result depending if its float or integer */
                     if ((num1 && num2) || (num1 === 0 && num2)) {
                         result = operate(oper, num1, num2);
