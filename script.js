@@ -61,6 +61,373 @@ function operate(oper, num1, num2) {
     return result;
 }
 
+/* When key pressed*/
+window.addEventListener('keydown', function(e) {
+    const paragraph = document.querySelector('p');
+    let text = paragraph.textContent;
+    let result, math_index;
+    let decimal_num = /^-?[0-9]*\.?[0-9]+$/gm;
+    let math_oper = /[\+\-\*\/]/;
+    let oper_pos;
+    
+    if (text.length < 16) {
+        switch (e.key) {    
+            case "Delete":
+                paragraph.textContent = "0";
+                break;
+            case "Escape":
+                paragraph.textContent = "0";
+                break;
+            case "Backspace":
+                paragraph.textContent = text.slice(0, text.length - 1);
+                break;
+            case "0":
+                    /* Adds one number before calculation */
+                    if (text[0] === "0" && (!math_oper.test(text) && (!text.includes(".")))) {
+                        paragraph.textContent = "0";
+                    } else {
+                        paragraph.textContent += "0";
+                    }
+                break;
+            case "1":
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
+                        paragraph.textContent = "1";
+                    } else if (text.includes(".")) {
+                        if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
+                            paragraph.textContent += "1";
+                        }
+                    } else {
+                        paragraph.textContent += "1";
+                    }
+
+                break;
+            case "2":
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
+                        paragraph.textContent = "2";
+                    } else if (text.includes(".")) {
+                        if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
+                            paragraph.textContent += "2";
+                        }
+                    } else {
+                        paragraph.textContent += "2";
+                    }
+                break;
+            case "3":
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
+                        paragraph.textContent = "3";
+                    } else if (text.includes(".")) {
+                        if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
+                            paragraph.textContent += "3";
+                        }
+                    } else {
+                        paragraph.textContent += "3";
+                    }
+                break;
+            case "4":
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
+                        paragraph.textContent = "4";
+                    } else if (text.includes(".")) {
+                        if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
+                            paragraph.textContent += "4";
+                        }
+                    } else {
+                        paragraph.textContent += "4";
+                    }
+                break;
+            case "5":
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
+                        paragraph.textContent = "5";
+                    } else if (text.includes(".")) {
+                        if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
+                            paragraph.textContent += "5";
+                        }
+                    } else {
+                        paragraph.textContent += "5";
+                    }          
+                break;
+            case "6":
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
+                        paragraph.textContent = "6";
+                    } else if (text.includes(".")) {
+                        if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
+                            paragraph.textContent += "6";
+                        }
+                    } else {
+                        paragraph.textContent += "6";
+                    }
+                break;
+            case "7":
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
+                        paragraph.textContent = "7";
+                    } else if (text.includes(".")) {
+                        if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
+                            paragraph.textContent += "7";
+                        }
+                    } else {
+                        paragraph.textContent += "7";
+                    }
+                break;
+            case "8":
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
+                        paragraph.textContent = "8";
+                    } else if (text.includes(".")) {
+                        if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
+                            paragraph.textContent += "8";
+                        }
+                    } else {
+                        paragraph.textContent += "8";
+                    }
+                break;
+            case "9":
+                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
+                        paragraph.textContent = "9";
+                    } else if (text.includes(".")) {
+                        if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
+                            paragraph.textContent += "9";
+                        }
+                    } else {
+                        paragraph.textContent += "9";
+                    }
+                break;
+            case "+":
+
+                /* Add math operation if it doesn't exist or calculate if it does*/
+                if (!/[\+\-\*\/]/.test(text)) {
+                    paragraph.textContent += "+";
+                } else if (/[1-9]/.test(text[text.length - 1]) || /[0]/.test(text[text.length - 1])) {
+                        paragraph.textContent += "+";
+                        values = evaluation(text);
+                        num1 = values[0];
+                        num2 = values[2];
+                        oper = values[1];
+                        console.log(values);
+                        /* Checking if its integer  or float */
+                        if (!isNaN(num1) && num1.indexOf(".") < 0) {
+                            num1 = parseInt(num1);
+                        } else {
+                            num1 = parseFloat(num1);
+                        }
+                        if (!isNaN(num2) && num2.indexOf(".") < 0) {
+                            num2 = parseInt(num2);
+                        } else {
+                            num2 = parseFloat(num2);
+                        }
+
+                        /* Checking if any number is zero while using divide on it*/
+                        if (num1 === 0 && num2 === 0) {
+                            alert("Result is undefined");
+                            paragraph.textContent = "0";
+                        } else if (num2 === 0) {
+                            alert("Cannot divide by zero");
+                            paragraph.textContent = "0";
+                        }
+                        
+                        /* Outputting result depending if its float or integer */
+                        if ((num1 && num2) || (num1 === 0 && num2)) paragraph.textContent = operate(oper, num1, num2).toFixed(1) + "+";
+                    } 
+                break;
+
+            case "-":
+                /* Add math operation if it doesn't exist or calculate if it does*/
+                if (!/[\+\-\*\/]/.test(text)) {
+                    paragraph.textContent += "-";
+                } else if (/[1-9]/.test(text[text.length - 1]) || /[0]/.test(text[text.length - 1]) || /^\d+\.\d{0, 2}$/.test(text)) {
+                    
+                        paragraph.textContent += "-";
+                        values = evaluation(text);
+                        num1 = values[0];
+                        num2 = values[2];
+                        oper = values[1];
+                        console.log(values);
+                        /* Checking if its integer  or float */
+                        if (!isNaN(num1) && num1.indexOf(".") < 0) {
+                            num1 = parseInt(num1);
+                        } else {
+                            num1 = parseFloat(num1);
+                        }
+                        if (!isNaN(num2) && num2.indexOf(".") < 0) {
+                            num2 = parseInt(num2);
+                        } else {
+                            num2 = parseFloat(num2);
+                        }
+
+                        /* Checking if any number is zero while using divide on it*/
+                        if (num1 === 0 && num2 === 0 && oper === "/") {
+                            alert("Result is undefined");
+                            paragraph.textContent = "0";
+                        } else if (num2 === 0 && oper === "/") {
+                            alert("Cannot divide by zero");
+                            paragraph.textContent = "0";
+                        }
+                        
+                        /* Outputting result depending if its float or integer */
+                        if ((num1 && num2) || (num1 === 0 && num2)) paragraph.textContent = operate(oper, num1, num2).toFixed(1) + "-";
+                    }
+                break;
+
+            case "*":
+                /* Add math operation if it doesn't exist or calculate if it does*/
+                if (!/[\+\-\*\/]/.test(text)) {
+                    paragraph.textContent += "*";
+                } else if (/[1-9]/.test(text[text.length - 1]) || /[0]/.test(text[text.length - 1])) {
+                        paragraph.textContent += "*";
+                        values = evaluation(text);
+                        num1 = values[0];
+                        num2 = values[2];
+                        oper = values[1];
+                        
+                        /* Checking if its integer  or float */
+                        if (!isNaN(num1) && num1.indexOf(".") < 0) {
+                            num1 = parseInt(num1);
+                        } else {
+                            num1 = parseFloat(num1);
+                        }
+                        if (!isNaN(num2) && num2.indexOf(".") < 0) {
+                            num2 = parseInt(num2);
+                        } else {
+                            num2 = parseFloat(num2);
+                        }
+
+                        /* Checking if any number is zero while using divide on it*/
+                        if (num1 === 0 && num2 === 0) {
+                            alert("Result is undefined");
+                            paragraph.textContent = "0";
+                        } else if (num2 === 0) {
+                            alert("Cannot divide by zero");
+                            paragraph.textContent = "0";
+                        }
+                        console.log(num2);
+                        /* Outputting result depending if its float or integer */
+                        if ((num1 && num2) || (num1 === 0 && num2)) paragraph.textContent = operate(oper, num1, num2).toFixed(1) + "*";
+                    }
+                break;
+
+            case "/":
+                /* Add math operation if it doesn't exist or calculate if it does*/
+                if (!/[\+\-\*\/]/.test(text)) {
+                    paragraph.textContent += "/";
+                } else if (/[1-9]/.test(text[text.length - 1]) || /[0]/.test(text[text.length - 1])) {
+
+                        paragraph.textContent += "/";
+                        values = evaluation(text);
+                        num1 = values[0];
+                        num2 = values[2];
+                        oper = values[1];
+                        
+                        /* Checking if its integer  or float */
+                        if (!isNaN(num1) && num1.indexOf(".") < 0) {
+                            num1 = parseInt(num1);
+                        } else {
+                            num1 = parseFloat(num1);
+                        }
+                        if (!isNaN(num2) && num2.indexOf(".") < 0) {
+                            num2 = parseInt(num2);
+                        } else {
+                            num2 = parseFloat(num2);
+                        }
+
+                        /* Checking if any number is zero while using divide on it*/
+                        if (num1 === 0 && num2 === 0) {
+                            alert("Result is undefined");
+                            paragraph.textContent = "0";
+                        } else if (num2 === 0) {
+                            alert("Cannot divide by zero");
+                            paragraph.textContent = "0";
+                        }
+
+                        /* Outputting result depending if its float or integer */
+                        if ((num1 && num2) || (num1 === 0 && num2)) {
+                            result = operate(oper, num1, num2);
+                            if (result.toString().includes(".")) {
+                                paragraph.textContent = result.toFixed(1) + "/";
+                            } else {
+                                paragraph.textContent = result + "/";
+                            }
+                        } 
+                    }  
+                break;
+            case ",":
+                if (!(text.match(/\.{1}/)) && (!text[0].match(/\./)) && (!(text.match(/[\+\-\*\/]/)))) {
+                    paragraph.textContent += ".";
+                }
+                if (text.match(/[\+\-\*\/]/)) {
+                    math_oper = text.match(/[\+\-\*\/]/);
+                    oper_pos = text.indexOf(math_oper);
+                    if (oper_pos >= 0 && (!(text.slice(oper_pos+1).match(/\.{1}/))) && (!(text[oper_pos+1].match(/\.{1}/)))) {
+                        paragraph.textContent += ".";
+                    }
+                }
+                break;
+            case "Enter":
+                values = evaluation(text);
+                num1 = values[0];
+                num2 = values[2];
+                oper = values[1];
+
+                /* Checking if its integer  or float */
+                if (!isNaN(num1) && num1.indexOf(".") < 0) {
+                    num1 = parseInt(num1);
+                } else {
+                    num1 = parseFloat(num1);
+                }
+                if (!isNaN(num2) && num2.indexOf(".") < 0) {
+                    num2 = parseInt(num2);
+                } else {
+                    num2 = parseFloat(num2);
+                }
+                
+                /* Checking if any number is zero while using divide on it*/
+                if (num1 === 0 && num2 === 0 && oper === "/") {
+                    alert("Result is undefined");
+                    paragraph.textContent = "0";
+                } else if (num2 === 0 && oper === "/") {
+                    alert("Cannot divide by zero");
+                    paragraph.textContent = "0";
+                }
+
+                /* Outputting result depending if its float or integer */
+                if (num1 && num2) {
+                    result = operate(oper, num1, num2);
+                    if (result.toString().includes(".")) {
+                        paragraph.textContent = result.toFixed(2);
+                    } else {
+                        paragraph.textContent = result;
+                    }
+                }
+            
+                break;
+
+            case "F9":
+                if (text.match(/[1-9]/)) {
+                    if (paragraph.textContent[0] === "-") {
+                        paragraph.textContent = text.replace("-","");
+                    } else {
+                        paragraph.textContent = "-" + paragraph.textContent.slice(0);
+                    }
+                }
+
+            default:
+                break;
+        }
+        
+        /* Calculating multiple math operations */
+
+        if (/[\+\-\*\/]/.test(text[text.length - 1]) && (/[\+\-\*\/]/.test(text.slice(0, text[text.length - 2])))) {
+            values = evaluation(text.slice(0, text[text.length - 2]));
+            num1 = values[0];
+            num2 = values[2];
+            oper = values[1];
+            
+            
+            if ((num1 && num2) || num1 === 0 || num2 === 0) paragraph.textContent = operate(oper, num1, num2);
+        }
+    } else {
+        if (e.key === "Backspace") {
+            paragraph.textContent = text.slice(0, text.length - 1);
+            
+        }
+    }
+});
 
 /* Displaying output by pressing mouse */
 
