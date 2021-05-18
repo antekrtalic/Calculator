@@ -61,125 +61,16 @@ function operate(oper, num1, num2) {
     return result;
 }
 
-/* Displaying output by pressing keys */
-
-window.addEventListener('keydown', function(e) {
-    const paragraph = document.querySelector('p');
-    let text = paragraph.textContent;
-    let values, num1, num2, oper, math_oper, oper_pos;
-    e.className = "active";
-    let selected = document.getElementsByClassName('active');
-    
-    if (text.length < 16) {
-
-        switch(e.key) {
-            case "Delete":
-                paragraph.textContent = "";
-                break;
-            case "Escape":
-                paragraph.textContent = "";
-                break;
-            case "Backspace":
-                paragraph.textContent = text.slice(0, text.length - 1);
-                break;
-            case "0":
-                paragraph.textContent += "0";
-                break;
-            case "1": 
-                paragraph.textContent += "1";
-                break;
-            case "2": 
-                paragraph.textContent += "2";
-                break;
-            case "3": 
-                paragraph.textContent += "3";
-                break;
-            case "4": 
-                paragraph.textContent += "4";
-                break;
-            case "5": 
-                paragraph.textContent += "5";
-                break;
-            case "6": 
-                paragraph.textContent += "6";
-                break;
-            case "7": 
-                paragraph.textContent += "7";
-                break;
-            case "8": 
-                paragraph.textContent += "8";
-                break;
-            case "9": 
-                paragraph.textContent += "9";
-                break;
-            case ",":
-                if (!(text.match(/\.{1}/)) && (!text[0].match(/\./))) {
-                    paragraph.textContent += ".";
-                }
-                if (text.match(/[\+\-\*\/]/)) {
-                    math_oper = text.match(/[\+\-\*\/]/);
-                    oper_pos = text.indexOf(math_oper);
-                    if (oper_pos >= 0 && (!(text.slice(oper_pos+1).match(/\.{1}/))) && (!(text[oper_pos+1].match(/\.{1}/)))) {
-                        paragraph.textContent += ".";
-                    }
-                }
-                break;
-            case "+":
-                if (text.match(/[1-9]/)) {
-                    if (!(text.match(/[\+\-\*\/]/))) paragraph.textContent += "+";
-                }
-                break;
-            case "-":
-                if (text.match(/[1-9]/)) {
-                    if (!(text.match(/[\+\-\*\/]/))) paragraph.textContent += "-";
-                }
-                break;
-            case "*":
-                if (text.match(/[1-9]/)) {
-                    if (!(text.match(/[\+\-\*\/]/))) paragraph.textContent += "*";
-                }
-                break;
-            case "/":
-                if (text.match(/[1-9]/)) {
-                    if (!(text.match(/[\+\-\*\/]/))) paragraph.textContent += "/";
-                }
-                break;
-            case "Enter":
-                values = evaluation(text);
-
-                num1 = values[0];
-                num2 = values[2];
-                oper = values[1];
-                if ((num1 && num2) || parseInt(num1) === 0 || parseInt(num2) === 0) paragraph.textContent = operate(oper, num1, num2); 
-                break;
-            case "F9": 
-                if (text.match(/[1-9]/)) {
-                    if (paragraph.textContent[0] === "-")  {
-                        paragraph.textContent = text.replace("-", "");
-                    } else {
-                        paragraph.textContent = "-" + paragraph.textContent.slice(0);
-                    }
-                }
-            default:
-                break;
-        }
-    } else {
-        if (e.key === "Backspace") {
-            paragraph.textContent = text.slice(0, text.length - 1);
-        }
-    }
-    
-});
 
 /* Displaying output by pressing mouse */
 
 window.addEventListener('click', function(e) {
     const paragraph = document.querySelector('p');
     let text = paragraph.textContent;
-    let result, oper;
-    let num1 = "";
-    let num2 = "";
-    let math_oper, oper_pos;
+    let result, math_index;
+    let decimal_num = /^-?[0-9]*\.?[0-9]+$/gm;
+    let math_oper = /[\+\-\*\/]/;
+    let oper_pos;
     if (text.length < 16) {
         switch (e.target.id) {    
             case "CE":
@@ -192,12 +83,9 @@ window.addEventListener('click', function(e) {
                 paragraph.textContent = text.slice(0, text.length - 1);
                 break;
             case "Zero":
-                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
+                    /* Adds one number before calculation */
+                    if (text[0] === "0" && (!math_oper.test(text) && (!text.includes(".")))) {
                         paragraph.textContent = "0";
-                    } else if (text.includes(".") || num2.includes(".")) {
-                        if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
-                            paragraph.textContent += "0";
-                        }
                     } else {
                         paragraph.textContent += "0";
                     }
@@ -522,6 +410,7 @@ window.addEventListener('click', function(e) {
             default:
                 break;
         }
+        
         /* Calculating multiple math operations */
 
         if (/[\+\-\*\/]/.test(text[text.length - 1]) && (/[\+\-\*\/]/.test(text.slice(0, text[text.length - 2])))) {
