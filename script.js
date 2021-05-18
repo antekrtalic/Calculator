@@ -224,7 +224,7 @@ window.addEventListener('click', function(e) {
                         }
                         
                         /* Outputting result depending if its float or integer */
-                        if ((num1 && num2) || (num1 === 0 && num2)) paragraph.textContent = operate(oper, num1, num2) + "+";
+                        if ((num1 && num2) || (num1 === 0 && num2)) paragraph.textContent = operate(oper, num1, num2).toFixed(1) + "+";
                     } 
                 break;
 
@@ -262,7 +262,7 @@ window.addEventListener('click', function(e) {
                         }
                         
                         /* Outputting result depending if its float or integer */
-                        if ((num1 && num2) || (num1 === 0 && num2)) paragraph.textContent = operate(oper, num1, num2) + "-";
+                        if ((num1 && num2) || (num1 === 0 && num2)) paragraph.textContent = operate(oper, num1, num2).toFixed(1) + "-";
                     }
                 break;
 
@@ -299,7 +299,7 @@ window.addEventListener('click', function(e) {
                         }
                         console.log(num2);
                         /* Outputting result depending if its float or integer */
-                        if ((num1 && num2) || (num1 === 0 && num2)) paragraph.textContent = operate(oper, num1, num2) + "*";
+                        if ((num1 && num2) || (num1 === 0 && num2)) paragraph.textContent = operate(oper, num1, num2).toFixed(1) + "*";
                     }
                 break;
 
