@@ -61,6 +61,7 @@ function operate(oper, num1, num2) {
     return result;
 }
 
+
 /* When key pressed*/
 window.addEventListener('keydown', function(e) {
     const paragraph = document.querySelector('p');

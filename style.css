@@ -67,6 +67,6 @@ kbd {
     background-color: #1cc4c9;
 
 }
-.key:active {
+.key:active, .active {
     background-color: red;
 }
