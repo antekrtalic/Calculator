@@ -71,6 +71,7 @@ window.addEventListener('keydown', function(e) {
     let math_oper = /[\+\-\*\/]/;
     let oper_pos;
     
+
     if (text.length < 16) {
         switch (e.key) {    
             case "Delete":
@@ -84,34 +85,70 @@ window.addEventListener('keydown', function(e) {
                 break;
             case "0":
                     /* Adds one number before calculation */
-                    if (text[0] === "0" && (!math_oper.test(text) && (!text.includes(".")))) {
+                    if (text[0] !== "0" && (!math_oper.test(text) && (!text.includes(".")))) {
                         paragraph.textContent = "0";
-                    } else {
+                    } else if (text.includes(".") && (!math_oper.test(text))) {
+                        if (!decimal_num.test(text)) {
+                            paragraph.textContent += "0";
+                        }
+                    } else if (text.includes(".") && math_oper.test(text)) {
+                        math_index = text.match(math_oper);
+                        math_oper = text.indexOf(math_index);
+                        if (!decimal_num.test(text.slice(math_oper+1))) {
+                            paragraph.textContent += "0";
+                        }
+                    }else {
                         paragraph.textContent += "0";
                     }
                 break;
             case "1":
-                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
+                    // if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
+                    //     paragraph.textContent = "1";
+                    // } else if (text.includes(".")) {
+                    //     if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
+                    //         paragraph.textContent += "1";
+                    //     }
+                    // } else if (text.includes(".") && math_oper.test(text)) {
+                    //     math_index = text.match(math_oper);
+                    //     math_oper = text.indexOf(math_index);
+                    //     if (!decimal_num.test(text.slice(math_oper+1))) {
+                    //         paragraph.textContent += "1";
+                    //     }
+                    // }else {
+                    //         paragraph.textContent += "1";
+                    // }
+                    if (text[0] === "0" && (!math_oper.test(text) && (!text.includes(".")))) {
                         paragraph.textContent = "1";
-                    } else if (text.includes(".")) {
-                        if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
+                    } else if (text.includes(".") && (!math_oper.test(text))) {
+                        if (!decimal_num.test(text)) {
                             paragraph.textContent += "1";
                         }
-                    } else {
+                    } else if (text.includes(".") && math_oper.test(text)) {
+                        math_index = text.match(math_oper);
+                        math_oper = text.indexOf(math_index);
+                        if (!decimal_num.test(text.slice(math_oper+1))) {
+                            paragraph.textContent += "1";
+                        }
+                    }else {
                         paragraph.textContent += "1";
                     }
-
                 break;
             case "2":
-                    if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
-                        paragraph.textContent = "2";
-                    } else if (text.includes(".")) {
-                        if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
-                            paragraph.textContent += "2";
-                        }
-                    } else {
+                if (text[0] === "0" && (!math_oper.test(text) && (!text.includes(".")))) {
+                    paragraph.textContent = "2";
+                } else if (text.includes(".") && (!math_oper.test(text))) {
+                    if (!decimal_num.test(text)) {
                         paragraph.textContent += "2";
                     }
+                } else if (text.includes(".") && math_oper.test(text)) {
+                    math_index = text.match(math_oper);
+                    math_oper = text.indexOf(math_index);
+                    if (!decimal_num.test(text.slice(math_oper+1))) {
+                        paragraph.textContent += "2";
+                    }
+                }else {
+                    paragraph.textContent += "2";
+                }
                 break;
             case "3":
                     if (text[0] === "0" && (!/[\+\-\*\/]/.test(text) && (!text.includes(".")))) {
@@ -120,7 +157,13 @@ window.addEventListener('keydown', function(e) {
                         if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
                             paragraph.textContent += "3";
                         }
-                    } else {
+                    } else if (text.includes(".") && math_oper.test(text)) {
+                        math_index = text.match(math_oper);
+                        math_oper = text.indexOf(math_index);
+                        if (!decimal_num.test(text.slice(math_oper+1))) {
+                            paragraph.textContent += "3";
+                        }
+                    }else {
                         paragraph.textContent += "3";
                     }
                 break;
@@ -131,7 +174,13 @@ window.addEventListener('keydown', function(e) {
                         if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
                             paragraph.textContent += "4";
                         }
-                    } else {
+                    } else if (text.includes(".") && math_oper.test(text)) {
+                        math_index = text.match(math_oper);
+                        math_oper = text.indexOf(math_index);
+                        if (!decimal_num.test(text.slice(math_oper+1))) {
+                            paragraph.textContent += "4";
+                        }
+                    }else {
                         paragraph.textContent += "4";
                     }
                 break;
@@ -142,7 +191,13 @@ window.addEventListener('keydown', function(e) {
                         if (!/^-?[0-9]*\.?[0-9]+$/gm.test(text)){
                             paragraph.textContent += "5";
                         }
-                    } else {
+                    } else if (text.includes(".") && math_oper.test(text)) {
+                        math_index = text.match(math_oper);
+                        math_oper = text.indexOf(math_index);
+                        if (!decimal_num.test(text.slice(math_oper+1))) {
+                            paragraph.textContent += "5";
+                        }
+                    }else {
                         paragraph.textContent += "5";
                     }          
                 break;
@@ -201,7 +256,7 @@ window.addEventListener('keydown', function(e) {
                         num1 = values[0];
                         num2 = values[2];
                         oper = values[1];
-                        console.log(values);
+                        
                         /* Checking if its integer  or float */
                         if (!isNaN(num1) && num1.indexOf(".") < 0) {
                             num1 = parseInt(num1);
@@ -352,8 +407,8 @@ window.addEventListener('keydown', function(e) {
                     paragraph.textContent += ".";
                 }
                 if (text.match(/[\+\-\*\/]/)) {
-                    math_oper = text.match(/[\+\-\*\/]/);
-                    oper_pos = text.indexOf(math_oper);
+                    math_index = text.match(/[\+\-\*\/]/);
+                    oper_pos = text.indexOf(math_index);
                     if (oper_pos >= 0 && (!(text.slice(oper_pos+1).match(/\.{1}/))) && (!(text[oper_pos+1].match(/\.{1}/)))) {
                         paragraph.textContent += ".";
                     }
